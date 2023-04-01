@@ -1,8 +1,8 @@
 import { IFormValue } from "../../../common/types";
 import { useMutation } from "@tanstack/react-query";
-import apiPostLogin from "../../../services/api/apiPostLogin";
 import { AxiosError } from "axios";
 import { useState } from "react";
+import { apiPostLogin } from "../../../services";
 
 export const useLoginMutation = () => {
   const [errorMessage, setErrorMessage] = useState("");
