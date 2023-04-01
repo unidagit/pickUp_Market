@@ -1,44 +1,26 @@
 import * as S from "./style";
-import axios, { AxiosError } from "axios";
 import Label from "../../components/label";
 import { CenterLayout } from "../../pages/_layouts";
 import { useForm } from "react-hook-form";
 import { IFormValue } from "../../common/types";
-import { BASE_URL } from "../../constants";
-import { useState } from "react";
 import Button from "../../components/buttons";
 import LoginInput from "../../components/inputs";
 import ErrorText from "../../components/text";
+import { useLoginMutation } from "../../hooks/mutations/useLoginMutation";
 
 function LoginPage() {
-  const [errorMessage, setErrorMessage] = useState("");
   const {
     register,
     handleSubmit,
     formState: { isValid, errors },
   } = useForm();
 
-  const postLoginUser = async (data: any) => {
-    const { username, password } = data;
-    const config = {
-      username,
-      password,
-      login_type: "SELLER",
-    };
-
-    try {
-      const response = await axios.post(`${BASE_URL}/accounts/login/`, config);
-      console.log(response.data);
-    } catch (error: any | AxiosError) {
-      if (axios.isAxiosError(error)) {
-        setErrorMessage(error?.response?.data.FAIL_Message);
-      }
-    }
-  };
+  const { postLogin, errorMessage } = useLoginMutation();
+  //쓰겠음. postLogin, errorMessage받음.
 
   //폼제출
   const onSubmit = async (data: IFormValue) => {
-    await postLoginUser(data);
+    postLogin(data); //쓰겠음!!! 호출함!
   };
 
   return (
@@ -71,7 +53,8 @@ function LoginPage() {
             </Label>
           </S.InputBox>
           <S.ErrorBox>
-            <ErrorText>{errorMessage}</ErrorText>
+            {" "}
+            <ErrorText>{errorMessage}</ErrorText>{" "}
           </S.ErrorBox>
           <Button disabled={!isValid} type="submit">
             로그인
