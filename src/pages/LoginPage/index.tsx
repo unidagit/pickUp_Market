@@ -6,7 +6,7 @@ import { IFormValue } from "../../common/types";
 import Button from "../../components/buttons";
 import LoginInput from "../../components/inputs";
 import ErrorText from "../../components/text";
-import { useLoginMutation } from "../../hooks/mutations/useLoginMutation";
+import { useLoginMutation } from "../../hooks/mutations/useLoginQuery";
 
 function LoginPage() {
   const {
