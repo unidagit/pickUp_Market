@@ -16,3 +16,13 @@ export const apiPostLogin = async (data: IFormValue) => {
   const res = await instance.post(`/accounts/login/`, config);
   return res.data;
 };
+
+export const apiGetProducts = async () => {
+  const { data } = await instance.get(`/products/`);
+  return data.results;
+};
+
+export const apiGetProductDetail = async (productId: string) => {
+  const { data } = await instance.get(`/products/${productId}/`);
+  return data;
+};
