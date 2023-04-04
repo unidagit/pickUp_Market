@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap'); */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -55,9 +55,8 @@ table {
 body {
   font-weight: 300;
   font-family: "Pretendard", sans-serif;
-  color:${(props) => props.theme.white.darker};
   line-height: 1.2;
-  background-color: black;
+  /* background-color: black; */
   overflow-x:hidden; 
   overflow-y:auto;
 }
@@ -71,6 +70,11 @@ a {
   img {
   max-width: 100%;
 }
+
+button {
+  border-style: none;
+}
+
 `;
 
 export default GlobalStyle;
