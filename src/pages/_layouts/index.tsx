@@ -1,6 +1,5 @@
 import { ProviderProps } from "../../common/types";
-import Footer from "./default/Footer";
-import NavBar from "./default/NavBar";
+import NavBar from "../../components/navBar";
 import * as S from "./style";
 
 function DefaultLayout({ children }: ProviderProps) {
@@ -8,7 +7,6 @@ function DefaultLayout({ children }: ProviderProps) {
     <>
       <NavBar />
       <S.ContentWrapper>{children}</S.ContentWrapper>
-      <Footer />
     </>
   );
 }
