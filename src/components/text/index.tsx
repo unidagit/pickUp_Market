@@ -1,6 +1,35 @@
 import React from "react";
 import * as S from "./style";
+import { IPrice } from "../../common/types";
 
-export default function ErrorText({ children }: { children: React.ReactNode }) {
+function ErrorText({ children }: { children: React.ReactNode }) {
   return <S.ErrorText>{children}</S.ErrorText>;
 }
+
+function PriceCommaText({
+  fontSize,
+  fontWeight,
+  fontColor,
+  price,
+  unitColor,
+  unitSize,
+  unitHeight,
+}: IPrice) {
+  const priceComma = (price: number) => price.toLocaleString();
+  return (
+    <S.PriceBox>
+      <S.PriceText
+        fontSize={fontSize}
+        fontWeight={fontWeight}
+        fontColor={fontColor}
+      >
+        {price && priceComma(price)}
+      </S.PriceText>
+      <S.Unit unitColor={unitColor} unitSize={unitSize} unitHeight={unitHeight}>
+        원
+      </S.Unit>
+    </S.PriceBox>
+  );
+}
+
+export { ErrorText, PriceCommaText };
