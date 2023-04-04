@@ -1,12 +1,12 @@
 import * as S from "./style";
 import Label from "../../components/label";
-import { CenterLayout } from "../../pages/_layouts";
+import { CenterLayout } from "../_layouts";
 import { useForm } from "react-hook-form";
 import { IFormValue } from "../../common/types";
-import Button from "../../components/buttons";
 import LoginInput from "../../components/inputs";
-import ErrorText from "../../components/text";
+import { ErrorText } from "../../components/text";
 import { useLoginMutation } from "../../hooks/mutations/useLoginQuery";
+import Button from "../../components/buttons";
 
 function LoginPage() {
   const {
@@ -56,7 +56,15 @@ function LoginPage() {
             {" "}
             <ErrorText>{errorMessage}</ErrorText>{" "}
           </S.ErrorBox>
-          <Button disabled={!isValid} type="submit">
+          <Button
+            disabled={!isValid}
+            height="60px"
+            type="submit"
+            fontSize="1.125rem"
+            fontWeight="700"
+            fontColor="#FFFFFF"
+            backgroundColor="#21BF48"
+          >
             로그인
           </Button>
         </S.FormBox>
