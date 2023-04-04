@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./style";
-import ErrorText from "../text";
+import { ErrorText } from "../text";
 
 // interface InputProps {
 //   id: string;
