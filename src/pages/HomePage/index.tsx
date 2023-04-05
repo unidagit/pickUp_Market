@@ -2,7 +2,7 @@ import Spinner from "../../components/spinner";
 import { useProductListQuery } from "../../hooks/queries/useProductListQuery";
 import { DefaultLayout } from "../_layouts";
 import Banner from "../../components/banner";
-import ProductCard from "../../components/productCard";
+import ProductCard from "../../components/contents/productCard";
 import * as S from "./style";
 import Footer from "../../components/footer";
 
@@ -25,7 +25,7 @@ function HomePage() {
           {productsList &&
             productsList.map((item) => (
               <S.ProductListBox key={item.product_id}>
-                <ProductCard {...item} />
+                <ProductCard key={item.product_id} {...item} />
               </S.ProductListBox>
             ))}
         </S.ProductListWrapper>
