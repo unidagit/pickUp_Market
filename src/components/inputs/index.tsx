@@ -12,7 +12,7 @@ import { ErrorText } from "../text";
 
 function LoginInput({ id, type, placeholder, register, errors }: any) {
   return (
-    <div>
+    <>
       <S.LoginInput
         id={id}
         type={type}
@@ -21,8 +21,21 @@ function LoginInput({ id, type, placeholder, register, errors }: any) {
         {...errors}
       />
       <ErrorText>{errors && errors.message}</ErrorText>
-    </div>
+    </>
   );
 }
 
-export default LoginInput;
+function ProductNameInput() {
+  return <S.ProductNameInput type="text" minLength={1} maxLength={20} />;
+}
+
+function PriceInput({ unit }: { unit: string }) {
+  return (
+    <S.UnitBox>
+      <S.PriceInput type="number" />
+      <S.Unit>{unit}</S.Unit>
+    </S.UnitBox>
+  );
+}
+
+export { LoginInput, ProductNameInput, PriceInput };
