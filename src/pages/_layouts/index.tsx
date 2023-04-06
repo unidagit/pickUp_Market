@@ -1,11 +1,14 @@
 import { ProviderProps } from "../../common/types";
-import NavBar from "../../components/navBar";
+import { BuyerNavBar, SellerNavBar } from "../../components/navBar";
 import * as S from "./style";
 
 function DefaultLayout({ children }: ProviderProps) {
+  const userType = localStorage.getItem("user_type");
+
   return (
     <>
-      <NavBar />
+      {userType === "SELLER" ? <SellerNavBar /> : <BuyerNavBar />}
+
       <S.ContentWrapper>{children}</S.ContentWrapper>
     </>
   );
