@@ -7,27 +7,32 @@ export interface ButtonProps
   children: React.ReactNode;
   fontSize: string;
   fontWeight: string;
+  width?: string;
   height: string;
   fontColor: string;
   backgroundColor: string;
   disabledBackColor?: string;
+  border?: string;
 }
 
 function Button({
   children,
   disabled,
   type,
+  width,
   height,
   fontSize,
   fontWeight,
   fontColor,
   disabledBackColor,
   backgroundColor,
+  border,
   ...props
 }: ButtonProps) {
   return (
     <S.Button
       type={type}
+      width={width}
       height={height}
       disabled={disabled}
       fontSize={fontSize}
@@ -35,6 +40,7 @@ function Button({
       fontColor={fontColor}
       backgroundColor={backgroundColor}
       disabledBackColor={disabledBackColor}
+      border={border}
       {...props}
     >
       {children}
