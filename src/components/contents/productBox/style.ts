@@ -4,8 +4,9 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 30px;
+  /* padding: 16px 30px; */
   border-bottom: 1px solid ${(props) => props.theme.sub.lighter};
+  background-color: ${(props) => props.theme.white.primary};
 `;
 
 export const Img = styled.img`
@@ -17,7 +18,6 @@ export const Img = styled.img`
 `;
 
 export const ProductName = styled.h2`
-  width: 500px;
   font-size: 18px;
   font-weight: 400;
 `;
@@ -29,14 +29,18 @@ export const ProductStock = styled.p`
 `;
 
 export const ProductInfoContainer = styled.div`
+  width: 100%;
   display: flex;
+  padding: 18px;
   align-items: center;
+  justify-content: center;
 `;
 
 export const ProductInfoBox = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  flex: 2;
 `;
 
 export const ProductNameBox = styled.div`
@@ -46,7 +50,6 @@ export const ProductNameBox = styled.div`
 `;
 
 export const ModifyContainer = styled.div`
-  width: 220px;
-  display: flex;
-  gap: 3.75rem;
+  flex: 0.3;
+  margin-left: 2rem;
 `;
