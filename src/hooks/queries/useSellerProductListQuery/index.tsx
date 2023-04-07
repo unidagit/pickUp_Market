@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiGetSellerProducts } from "../../../services/api";
-import { IProducts } from "../../../common/types/api";
+import { IProductBox } from "../../../common/types/api";
 
 export default function useSellerProductListQuery() {
   const {
@@ -8,7 +8,7 @@ export default function useSellerProductListQuery() {
     isLoading,
     isError,
     error,
-  } = useQuery<IProducts[]>(["sellerProducts"], () => apiGetSellerProducts());
+  } = useQuery<IProductBox[]>(["sellerProducts"], () => apiGetSellerProducts());
 
   return { sellerProductList, isLoading, isError, error };
 }
