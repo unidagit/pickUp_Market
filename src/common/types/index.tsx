@@ -19,3 +19,13 @@ export interface IPrice {
   unitSize?: string;
   unitHeight?: string;
 }
+
+export interface IProductInputProps {
+  unit?: string;
+  type?: string;
+  id?: string;
+  register?: any;
+  width?: string;
+  min?: string;
+  onChange?: any;
+}
