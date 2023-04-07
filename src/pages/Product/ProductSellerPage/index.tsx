@@ -6,15 +6,25 @@ import Button from "../../../components/buttons";
 import Plus from "../../../assets/plus.png";
 import * as S from "./style";
 import Spinner from "../../../components/spinner";
+import useProductDeleteQuery from "../../../hooks/mutations/useProductDeleteQuery";
 
 function ProductSellerPage() {
   const navigate = useNavigate();
   const { sellerProductList, isLoading } = useSellerProductListQuery();
-  console.log(sellerProductList);
+  const { deleteProduct } = useProductDeleteQuery();
 
   const handleUpload = () => {
     navigate(`/products/seller/upload`);
   };
+
+  const handleDelete = (id: number) => {
+    deleteProduct(id);
+  };
+
+  const handleModify = (id: number) => {
+    navigate(`/products/seller/upload`);
+  };
+
   return (
     <>
       <NavBar />
@@ -47,7 +57,12 @@ function ProductSellerPage() {
           ) : (
             sellerProductList.map((item) => (
               <>
-                <ProductBox key={item.product_id} {...item} />
+                <ProductBox
+                  key={item.product_id}
+                  {...item}
+                  handleDelete={handleDelete}
+                  handleModify={handleModify}
+                />
               </>
             ))
           )}

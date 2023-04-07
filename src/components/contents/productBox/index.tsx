@@ -1,7 +1,6 @@
 import * as S from "./style";
 import { PriceCommaText } from "../../text";
-import { IProducts } from "../../../common/types/api";
-import { useNavigate } from "react-router-dom";
+import { IProductBox } from "../../../common/types/api";
 import Button from "../../buttons";
 
 function ProductBox({
@@ -10,13 +9,9 @@ function ProductBox({
   product_name,
   product_id,
   stock,
-}: IProducts) {
-  const navigate = useNavigate();
-
-  const handleModify = () => {
-    navigate(`/products/${product_id}`);
-  };
-
+  handleDelete,
+  handleModify,
+}: IProductBox) {
   return (
     <S.Wrapper>
       <S.ProductInfoContainer>
@@ -48,7 +43,7 @@ function ProductBox({
             height="40px"
             fontColor="#FFFFFF"
             backgroundColor="#21BF48"
-            onClick={handleModify}
+            onClick={() => handleModify(product_id)}
           >
             수정
           </Button>
@@ -63,6 +58,7 @@ function ProductBox({
             fontColor="#767676"
             backgroundColor="#FFFFFF"
             border="1px solid #767676"
+            onClick={() => handleDelete(product_id)}
           >
             삭제
           </Button>
