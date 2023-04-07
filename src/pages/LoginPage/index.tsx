@@ -1,5 +1,4 @@
 import * as S from "./style";
-import Label from "../../components/label";
 import { CenterLayout } from "../_layouts";
 import { useForm } from "react-hook-form";
 import { IFormValue } from "../../common/types";
@@ -7,6 +6,7 @@ import { LoginInput } from "../../components/inputs";
 import { ErrorText } from "../../components/text";
 import { useLoginMutation } from "../../hooks/mutations/useLoginQuery";
 import Button from "../../components/buttons";
+import Label from "../../components/atoms/label";
 
 function LoginPage() {
   const {
@@ -53,8 +53,7 @@ function LoginPage() {
             </Label>
           </S.InputBox>
           <S.ErrorBox>
-            {" "}
-            <ErrorText>{errorMessage}</ErrorText>{" "}
+            <ErrorText>{errorMessage}</ErrorText>
           </S.ErrorBox>
           <Button
             disabled={!isValid}
