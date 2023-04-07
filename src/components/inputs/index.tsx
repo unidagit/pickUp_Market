@@ -1,6 +1,7 @@
 import React from "react";
 import * as S from "./style";
 import { ErrorText } from "../text";
+import { IProductInputProps } from "../../common/types";
 
 // interface InputProps {
 //   id: string;
@@ -25,17 +26,47 @@ function LoginInput({ id, type, placeholder, register, errors }: any) {
   );
 }
 
-function ProductNameInput() {
-  return <S.ProductNameInput type="text" minLength={1} maxLength={20} />;
-}
+// function ProductNameInput() {
+//   return <S.ProductNameInput type="text" minLength={1} maxLength={20} />;
+// }
 
-function PriceInput({ unit }: { unit: string }) {
+function ProductInput({
+  unit,
+  type,
+  id,
+  register,
+  width,
+  min,
+  onChange,
+}: IProductInputProps) {
   return (
     <S.UnitBox>
-      <S.PriceInput type="number" />
-      <S.Unit>{unit}</S.Unit>
+      <S.ProductInput
+        type={type}
+        id={id}
+        width={width ? width : ""}
+        min={min ? min : "0"}
+        onChange={onChange}
+        {...register}
+      />
+      {unit ? <S.Unit>{unit}</S.Unit> : ""}
     </S.UnitBox>
   );
 }
 
-export { LoginInput, ProductNameInput, PriceInput };
+// function FileInput({ onChange, register, ref }: any) {
+//   return (
+//     <S.FileInput
+//       type="file"
+//       onChange={onChange}
+//       ref={ref}
+//       {...register}
+//     ></S.FileInput>
+//   );
+// }
+
+function Textarea({ register }: any) {
+  return <S.Textarea minLength={1} maxLength={20} {...register} />;
+}
+
+export { LoginInput, ProductInput, Textarea };

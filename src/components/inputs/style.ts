@@ -13,16 +13,20 @@ export const LoginInput = styled.input`
   }
 `;
 
-export const ProductNameInput = styled.input`
-  padding: 16px;
-  outline: ${(props) => props.theme.sub.lighter};
-  border: 1px solid ${(props) => props.theme.sub.lighter};
-`;
+// export const ProductNameInput = styled.input`
+//   padding: 16px;
+//   height: 54px;
+//   outline: ${(props) => props.theme.sub.lighter};
+//   border: 1px solid ${(props) => props.theme.sub.lighter};
+//   border-radius: 5px;
+// `;
 
-export const PriceInput = styled.input`
+export const ProductInput = styled.input`
+  width: ${(props) => props.width};
   padding: 16px;
   outline: ${(props) => props.theme.sub.lighter};
   border: 1px solid ${(props) => props.theme.sub.lighter};
+  border-radius: 5px;
 `;
 
 export const UnitBox = styled.div`
@@ -40,4 +44,11 @@ export const Unit = styled.p`
   font-weight: 400;
   background-color: ${(props) => props.theme.sub.lighter};
   border-radius: 0px 5px 5px 0px;
+`;
+
+export const Textarea = styled.textarea`
+  width: 100%;
+  height: 60vh;
+  padding: 10px;
+  outline: ${(props) => props.theme.sub.lighter};
 `;
