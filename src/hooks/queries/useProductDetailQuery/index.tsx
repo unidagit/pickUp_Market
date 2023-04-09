@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { IProducts } from "../../../common/types/api";
+import { IProductBox } from "../../../common/types/api";
 import { apiGetProductDetail } from "../../../services/api";
 import { useParams } from "react-router-dom";
 
@@ -11,7 +11,7 @@ export const useProductDetailQuery = () => {
     isLoading,
     isError,
     error,
-  } = useQuery<IProducts>(["productId", productId], () =>
+  } = useQuery<IProductBox>(["productId", productId], () =>
     apiGetProductDetail(productId)
   );
 
