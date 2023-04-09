@@ -9,9 +9,22 @@ function ProductBox({
   product_name,
   product_id,
   stock,
+  shipping_fee,
+  product_info,
+  shipping_method,
   handleDelete,
   handleModify,
 }: IProductBox) {
+  const productInfo = {
+    image,
+    price,
+    product_name,
+    product_id,
+    stock,
+    shipping_fee,
+    product_info,
+    shipping_method,
+  };
   return (
     <S.Wrapper>
       <S.ProductInfoContainer>
@@ -43,7 +56,7 @@ function ProductBox({
             height="40px"
             fontColor="#FFFFFF"
             backgroundColor="#21BF48"
-            onClick={() => handleModify(product_id)}
+            onClick={() => handleModify(productInfo)}
           >
             수정
           </Button>
