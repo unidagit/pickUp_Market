@@ -2,28 +2,50 @@ import { SellerNavBar } from "../../../components/navBar";
 import { ProductInput, Textarea } from "../../../components/inputs";
 import * as S from "./style";
 import Upload from "../../../assets/upload.png";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import Button from "../../../components/buttons";
 import Label from "../../../components/atoms/label";
 import useProductUploadQuery from "../../../hooks/mutations/useProductUploadQuery";
+import { useLocation, useParams } from "react-router-dom";
+import useProductEditQuery from "../../../hooks/mutations/useProductEditQuery";
 
 function ProductUploadPage() {
   const [preview, setPreview] = useState("");
   const [currentTab, setTab] = useState(1);
   const [shipping, setShipping] = useState("PARCEL");
-  const { handleSubmit, register, watch } = useForm();
-
   const { postProduct } = useProductUploadQuery();
+  const { editProduct } = useProductEditQuery();
+  const { handleSubmit, register, setValue } = useForm();
+  const { type } = useParams();
+  const location = useLocation();
+  const state = location.state;
+  const [productId, setProductId] = useState();
 
-  //이미지 미리보기 띄우기
-  const previewImage = watch("image");
   useEffect(() => {
-    if (previewImage && previewImage.length > 0) {
-      const Img = previewImage[0];
-      setPreview(URL.createObjectURL(Img));
+    if (type === "edit") {
+      if (state.shipping_method === "DELIVERY") {
+        setTab(2);
+      }
+
+      setProductId(state.product_id);
+      setPreview(state.image);
+      setValue("product_name", state.product_name);
+      setValue("price", state.price);
+      setValue("shipping_fee", state.shipping_fee);
+      setValue("product_info", state.product_info);
+      setValue("stock", state.stock);
     }
-  }, [previewImage]);
+  }, [type, state, setValue, productId]);
+
+  const handleImage = (e: any) => {
+    if (e.target.files) {
+      setValue("image", e.target.files[0]);
+      setPreview(URL.createObjectURL(e.target.files[0]));
+      URL.revokeObjectURL(preview);
+      // console.log(e.target.files[0]);
+    }
+  };
 
   const menuArr = [
     { name: "택배, 소포, 등기", id: 1 },
@@ -37,34 +59,18 @@ function ProductUploadPage() {
   useEffect(() => {
     if (currentTab === 1) {
       setShipping("PARCEL");
-    } else {
-      setShipping("DELIVERY");
+      return;
     }
   }, [currentTab]);
 
-  const onSubmit = ({
-    image,
-    product_name,
-    price,
-    shipping_fee,
-    product_info,
-    stock,
-  }: any) => {
-    const Img = image[0];
-
-    const newProduct = {
-      image: Img,
-      price,
-      product_info,
-      product_name,
-      shipping_fee,
-      shipping_method: shipping,
-      stock,
-    };
-    postProduct(newProduct);
+  const onSubmit = async (formData: FieldValues) => {
+    if (type === "upload") {
+      formData.shipping_method = shipping;
+      postProduct(formData);
+    } else if (type === "edit") {
+      editProduct({ formData: formData, product_id: Number(productId) });
+    }
   };
-
-  //console.log(watch("image")); //watch는 form의 변경을 감지할 수 있다. 이미지를 바꾸면 변화를 감지하고 출력해준다.
 
   return (
     <>
@@ -82,8 +88,10 @@ function ProductUploadPage() {
               <S.FileInput
                 id="image"
                 type="file"
-                {...register("image")}
-                required
+                {...(register("image"),
+                {
+                  onChange: handleImage,
+                })}
               />
             </S.InputBox>
 
