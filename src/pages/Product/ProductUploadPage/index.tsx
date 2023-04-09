@@ -38,7 +38,7 @@ function ProductUploadPage() {
     }
   }, [type, state, setValue, productId]);
 
-  const handleImage = (e: any) => {
+  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setValue("image", e.target.files[0]);
       setPreview(URL.createObjectURL(e.target.files[0]));
