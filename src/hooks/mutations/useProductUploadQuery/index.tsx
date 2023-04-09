@@ -1,14 +1,14 @@
 import { useMutation } from "@tanstack/react-query";
 
-import { IProducts } from "../../../common/types/api";
 import { apiPostSellerProducts } from "../../../services/api";
 import { useNavigate } from "react-router-dom";
+import { FieldValues } from "react-hook-form";
 
 export default function useProductUploadQuery() {
   const navigate = useNavigate();
 
   const { mutate: postProduct } = useMutation(
-    (newProduct: IProducts) => apiPostSellerProducts(newProduct),
+    (formData: FieldValues) => apiPostSellerProducts(formData),
     {
       onSuccess: (data) => {
         navigate("/");
