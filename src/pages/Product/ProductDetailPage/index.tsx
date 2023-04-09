@@ -78,24 +78,12 @@ function ProductDetailPage() {
             </S.TotalPriceBox>
 
             <S.ButtonBox>
-              <Button
-                height="60px"
-                type="submit"
-                fontSize="1.125rem"
-                fontWeight="700"
-                fontColor="#FFFFFF"
-                backgroundColor="#21BF48"
-                onClick={handleBuy}
-              >
+              <Button type="submit" onClick={handleBuy}>
                 바로구매
               </Button>
 
               <Button
-                height="60px"
                 type="submit"
-                fontSize="1.125rem"
-                fontWeight="700"
-                fontColor="#FFFFFF"
                 backgroundColor="#767676"
                 onClick={handleCart}
               >

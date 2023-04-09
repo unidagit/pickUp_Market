@@ -48,4 +48,14 @@ function Button({
   );
 }
 
+Button.defaultProps = {
+  width: "100%",
+  height: "60px",
+  fontSize: "1.125rem",
+  fontWeight: "700",
+  fontColor: "#FFFFFF",
+  backgroundColor: "#21BF48",
+  disabledBackColor: "#C4C4C4",
+};
+
 export default Button;

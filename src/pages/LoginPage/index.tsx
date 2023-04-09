@@ -55,15 +55,7 @@ function LoginPage() {
           <S.ErrorBox>
             <ErrorText>{errorMessage}</ErrorText>
           </S.ErrorBox>
-          <Button
-            disabled={!isValid}
-            height="60px"
-            type="submit"
-            fontSize="1.125rem"
-            fontWeight="700"
-            fontColor="#FFFFFF"
-            backgroundColor="#21BF48"
-          >
+          <Button disabled={!isValid} type="submit">
             로그인
           </Button>
         </S.FormBox>

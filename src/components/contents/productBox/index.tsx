@@ -52,10 +52,7 @@ function ProductBox({
           <Button
             fontSize="16px"
             fontWeight="400"
-            width="100%"
             height="40px"
-            fontColor="#FFFFFF"
-            backgroundColor="#21BF48"
             onClick={() => handleModify(productInfo)}
           >
             수정
@@ -66,7 +63,6 @@ function ProductBox({
           <Button
             fontSize="16px"
             fontWeight="400"
-            width="100%"
             height="40px"
             fontColor="#767676"
             backgroundColor="#FFFFFF"

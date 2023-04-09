@@ -61,8 +61,6 @@ function ProductSellerPage() {
             fontWeight="400"
             width="168px"
             height="54px"
-            fontColor="#FFFFFF"
-            backgroundColor="#21BF48"
             onClick={handleUpload}
           >
             <S.Plus src={Plus} alt="상품추가"></S.Plus>

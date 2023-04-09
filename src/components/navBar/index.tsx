@@ -66,8 +66,6 @@ function SellerNavBar() {
             fontWeight="500"
             width="168px"
             height="54px"
-            fontColor="#FFFFFF"
-            backgroundColor="#21BF48"
             onClick={handleSeller}
           >
             <S.ShopBagIcon src={shoppingBag} />
