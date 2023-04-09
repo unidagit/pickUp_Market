@@ -23,14 +23,22 @@ function Label({
     <S.Label
       htmlFor={htmlFor}
       width={width}
-      fontSize={fontSize ? fontSize : "16px"}
+      fontSize={fontSize}
       fontWeight={fontWeight}
-      marginBottom={marginBottom ? marginBottom : "10px"}
-      color={color ? color : "#767676"}
+      marginBottom={marginBottom}
+      color={color}
     >
       {children}
     </S.Label>
   );
 }
+
+Label.defaultProps = {
+  width: "100%",
+  fontSize: "16px",
+  fontWeight: "400",
+  marginBottom: "10px",
+  color: "#767676",
+};
 
 export default Label;
