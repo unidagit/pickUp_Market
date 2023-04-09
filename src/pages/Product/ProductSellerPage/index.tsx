@@ -7,22 +7,47 @@ import Plus from "../../../assets/plus.png";
 import * as S from "./style";
 import Spinner from "../../../components/spinner";
 import useProductDeleteQuery from "../../../hooks/mutations/useProductDeleteQuery";
+import { IDefault } from "../../../common/types";
 
 function ProductSellerPage() {
   const navigate = useNavigate();
   const { sellerProductList, isLoading } = useSellerProductListQuery();
   const { deleteProduct } = useProductDeleteQuery();
 
+  console.log(sellerProductList);
+
   const handleUpload = () => {
-    navigate(`/products/seller/upload`);
+    navigate(`/seller/upload`);
   };
 
   const handleDelete = (id: number) => {
     deleteProduct(id);
   };
 
-  const handleModify = (id: number) => {
-    navigate(`/products/seller/upload`);
+  const handleModify = (productInfo: IDefault) => {
+    const {
+      image,
+      price,
+      product_id,
+      product_name,
+      stock,
+      shipping_fee,
+      product_info,
+      shipping_method,
+    } = productInfo;
+
+    navigate(`/seller/edit`, {
+      state: {
+        image,
+        price,
+        product_id,
+        product_name,
+        stock,
+        shipping_fee,
+        product_info,
+        shipping_method,
+      },
+    });
   };
 
   return (

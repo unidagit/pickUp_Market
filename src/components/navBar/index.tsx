@@ -48,7 +48,7 @@ function BuyerNavBar() {
 function SellerNavBar() {
   const navigate = useNavigate();
   const handleSeller = () => {
-    navigate(`/products/seller`);
+    navigate(`/seller`);
   };
   return (
     <>
