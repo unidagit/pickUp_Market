@@ -29,3 +29,14 @@ export interface IProductInputProps {
   min?: string;
   onChange?: any;
 }
+
+export interface IDefault {
+  image: any;
+  price: number | undefined;
+  product_id: number | undefined;
+  product_name: string | undefined;
+  stock: number | undefined;
+  shipping_fee: number | undefined;
+  product_info: string | undefined;
+  shipping_method: string | undefined;
+}
