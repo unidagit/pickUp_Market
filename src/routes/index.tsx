@@ -14,11 +14,8 @@ export default function IRoute() {
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/products/:id" element={<ProductDetailPage />}></Route>
-        <Route path="/products/seller" element={<ProductSellerPage />}></Route>
-        <Route
-          path="/products/seller/upload"
-          element={<ProductUploadPage />}
-        ></Route>
+        <Route path="/seller" element={<ProductSellerPage />}></Route>
+        <Route path="/seller/:type" element={<ProductUploadPage />}></Route>
       </Routes>
     </BrowserRouter>
   );
