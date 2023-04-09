@@ -1,14 +1,11 @@
 import axios from "axios";
 import { BASE_URL } from "../../constants";
 import { IFormValue } from "../../common/types";
+import { FieldValues } from "react-hook-form";
 
 const getToken = localStorage.getItem("token");
 
 const instance = axios.create({
-  headers: {
-    "Content-Type": "multipart/form-data",
-    Authorization: `JWT ${getToken}`,
-  },
   baseURL: `${BASE_URL}`,
 });
 
@@ -44,12 +41,30 @@ export const apiGetSellerProducts = async () => {
   return data.results;
 };
 
-export const apiPostSellerProducts = async (newProduct: any) => {
-  const { data } = await instance.post(`/products/`, newProduct);
+export const apiPostSellerProducts = async (formData: FieldValues) => {
+  const { data } = await instance.post(`/products/`, formData);
   return data;
 };
 
 export const apiDeleteSellerProduct = async (product_id: number) => {
   const { data } = await instance.delete(`/products/${product_id}/`);
   return data;
+};
+
+export const apiEditSellerProduct = async (data: {
+  formData: FieldValues;
+  product_id: number;
+}) => {
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `JWT ${getToken}`,
+    },
+  };
+  const res = await instance.patch(
+    `/products/${data.product_id}/`,
+    data.formData,
+    config
+  );
+  return res.data;
 };
