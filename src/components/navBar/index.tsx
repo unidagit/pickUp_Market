@@ -3,7 +3,7 @@ import * as S from "./style";
 import user from "../../assets/user.png";
 import shoppingBag from "../../assets/shoppingBag.png";
 import shoppingCart from "../../assets/shoppingCart.png";
-import Button from "../buttons";
+import Button from "../atoms/buttons";
 import Logo from "../logo";
 
 function NavBar() {

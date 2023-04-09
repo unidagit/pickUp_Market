@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { NavBar } from "../../../components/navBar";
 import useSellerProductListQuery from "../../../hooks/queries/useSellerProductListQuery";
 import ProductBox from "../../../components/contents/productBox";
-import Button from "../../../components/buttons";
+import Button from "../../../components/atoms/buttons";
 import Plus from "../../../assets/plus.png";
 import * as S from "./style";
 import Spinner from "../../../components/spinner";

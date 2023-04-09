@@ -4,7 +4,7 @@ import * as S from "./style";
 import Upload from "../../../assets/upload.png";
 import { FieldValues, useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
-import Button from "../../../components/buttons";
+import Button from "../../../components/atoms/buttons";
 import Label from "../../../components/atoms/label";
 import useProductUploadQuery from "../../../hooks/mutations/useProductUploadQuery";
 import { useLocation, useParams } from "react-router-dom";

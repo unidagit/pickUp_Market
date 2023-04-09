@@ -5,7 +5,7 @@ import { IFormValue } from "../../common/types";
 import { LoginInput } from "../../components/inputs";
 import { ErrorText } from "../../components/text";
 import { useLoginMutation } from "../../hooks/mutations/useLoginQuery";
-import Button from "../../components/buttons";
+import Button from "../../components/atoms/buttons";
 import Label from "../../components/atoms/label";
 
 function LoginPage() {

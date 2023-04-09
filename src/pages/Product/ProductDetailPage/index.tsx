@@ -5,14 +5,14 @@ import { DefaultLayout } from "../../_layouts";
 import Count from "../../../components/count";
 import { useState } from "react";
 import { PriceCommaText } from "../../../components/text";
-import Button from "../../../components/buttons";
+import Button from "../../../components/atoms/buttons";
 
 function ProductDetailPage() {
   const [count, setCount] = useState(1);
   const { productDetail, isLoading } = useProductDetailQuery();
   const userType = localStorage.getItem("user_type");
 
-  if (isLoading) return <Spinner />;
+  // if (isLoading) return <Spinner />;
 
   const handleBuy = () => {
     if (userType === "SELLER") {
@@ -30,7 +30,9 @@ function ProductDetailPage() {
 
   return (
     <DefaultLayout>
-      {productDetail && (
+      {isLoading || !productDetail ? (
+        <Spinner />
+      ) : (
         <S.Wrapper>
           <S.Img alt="상품이미지" src={productDetail.image} />
           <S.ProductBox>
