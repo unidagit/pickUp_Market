@@ -1,6 +1,6 @@
 export interface IProducts {
   created_at?: string;
-  image: string;
+  image?: string;
   price: number;
   product_id?: number;
   product_info: string;
@@ -18,7 +18,20 @@ export interface IProductBox {
   price: number;
   product_id: number;
   product_name: string;
+  store_name: string;
   stock: number;
+  shipping_fee: number;
+  product_info: string;
+  shipping_method: string;
   handleDelete: (id: number) => void;
-  handleModify: (id: number) => void;
+  handleModify: any;
+}
+
+export interface IOnsubmit {
+  image: string;
+  product_name: string;
+  price: number;
+  shipping_fee: number;
+  product_info: string;
+  stock: number;
 }
