@@ -6,6 +6,10 @@ function ErrorText({ children }: { children: React.ReactNode }) {
   return <S.ErrorText>{children}</S.ErrorText>;
 }
 
+function SuccessText({ children }: { children: React.ReactNode }) {
+  return <S.SuccessText>{children}</S.SuccessText>;
+}
+
 function PriceCommaText({
   fontSize,
   fontWeight,
@@ -32,4 +36,4 @@ function PriceCommaText({
   );
 }
 
-export { ErrorText, PriceCommaText };
+export { ErrorText, PriceCommaText, SuccessText };

@@ -8,6 +8,13 @@ export const ErrorText = styled.p`
   font-weight: 400;
 `;
 
+export const SuccessText = styled.p`
+  margin-top: 6px;
+  color: ${(props) => props.theme.main.primary};
+  font-size: 16px;
+  font-weight: 400;
+`;
+
 export const PriceText = styled.p<IPrice>`
   font-size: ${(props) => props.fontSize};
   font-weight: ${(props) => props.fontWeight};
