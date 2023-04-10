@@ -3,11 +3,16 @@ export type ProviderProps = {
 };
 
 export interface IFormValue {
-  password?: string;
   username?: string;
+  password?: string;
+  password2?: string;
+  phone_number?: string;
   accountname?: string;
+  name?: string;
+  store_name?: string;
   introduce?: string;
   filename?: string;
+  company_registration_number?: string;
 }
 
 export interface IPrice {
