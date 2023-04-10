@@ -13,13 +13,18 @@ export const LoginInput = styled.input`
   }
 `;
 
-// export const ProductNameInput = styled.input`
-//   padding: 16px;
-//   height: 54px;
-//   outline: ${(props) => props.theme.sub.lighter};
-//   border: 1px solid ${(props) => props.theme.sub.lighter};
-//   border-radius: 5px;
-// `;
+export const JoinInput = styled.input`
+  width: 100%;
+  font-size: 16px;
+  padding: 16px;
+  outline: none;
+  border: 1px solid ${(props) => props.theme.sub.lighter};
+  border-radius: 5px;
+
+  &:focus {
+    border: 1px solid ${(props) => props.theme.main.primary};
+  }
+`;
 
 export const ProductInput = styled.input`
   width: ${(props) => props.width};
