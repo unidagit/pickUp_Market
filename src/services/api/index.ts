@@ -68,3 +68,30 @@ export const apiEditSellerProduct = async (data: {
   );
   return res.data;
 };
+
+export const apiPostValidUsername = async (username: string) => {
+  const config = {
+    username,
+  };
+  const { data } = await instance.post(
+    `/accounts/signup/valid/username/`,
+    config
+  );
+  return data;
+};
+
+export const apiPostValidCompanyNum = async (companyNum: string) => {
+  const config = {
+    company_registration_number: `${companyNum}`,
+  };
+  const { data } = await instance.post(
+    `/accounts/signup/valid/company_registration_number/`,
+    config
+  );
+  return data;
+};
+
+export const apiPostJoin = async (joinData: IFormValue) => {
+  const { data } = await instance.post(`/accounts/signup_seller/`, joinData);
+  return data;
+};
