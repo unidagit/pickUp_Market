@@ -5,10 +5,10 @@ import shoppingBag from "../../assets/shoppingBag.png";
 import shoppingCart from "../../assets/shoppingCart.png";
 import Button from "../atoms/buttons";
 import Logo from "../logo";
+import { useState, useRef, useEffect } from "react";
+import Dropdown from "../dropDown";
 
 function NavBar() {
-  // const navigate = useNavigate();
-
   return (
     <>
       <S.Wrapper>
@@ -21,8 +21,6 @@ function NavBar() {
 }
 
 function BuyerNavBar() {
-  // const navigate = useNavigate();
-
   return (
     <>
       <S.StickyWrapper>
@@ -50,15 +48,41 @@ function SellerNavBar() {
   const handleSeller = () => {
     navigate(`/seller`);
   };
+
+  //  드롭다운
+  const modalRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+
+  const handleMyBoxClick = () => {
+    setOpen(true);
+  };
+
+  useEffect(() => {
+    const clickModalOutside = (e: any) => {
+      const isInside = modalRef.current?.contains(e.target);
+      if (open && !isInside) {
+        setOpen(!open);
+      }
+    };
+
+    document.addEventListener("mousedown", clickModalOutside);
+
+    //클린업
+    return () => {
+      document.removeEventListener("mousedown", clickModalOutside);
+    };
+  }, [open]);
+
   return (
     <>
       <S.StickyWrapper>
         <Logo />
 
         <S.IconBox>
-          <S.MyIconBox>
+          <S.MyIconBox ref={modalRef} onClick={handleMyBoxClick}>
             <S.MyIcon src={user} alt="user 이미지" />
             <S.MyIconText>마이페이지</S.MyIconText>
+            <S.DropBox>{open && <Dropdown />}</S.DropBox>
           </S.MyIconBox>
 
           <Button

@@ -59,6 +59,16 @@ export const MyIcon = styled.img`
 export const MyIconText = styled.p`
   font-size: 12px;
   color: ${(props) => props.theme.sub.primary};
+  cursor: pointer;
+
+  &:hover {
+    color: ${(props) => props.theme.main.primary};
+  }
+`;
+
+export const DropBox = styled.div`
+  position: absolute;
+  top: 84px;
 `;
 
 export const Title = styled.h2`
