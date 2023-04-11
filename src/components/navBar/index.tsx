@@ -21,6 +21,12 @@ function NavBar() {
 }
 
 function BuyerNavBar() {
+  const navigate = useNavigate();
+  const { modalRef, open, handleMyBoxClick } = useDropdown();
+
+  const handleLogin = () => {
+    navigate(`/login`);
+  };
   return (
     <>
       <S.StickyWrapper>
@@ -32,9 +38,12 @@ function BuyerNavBar() {
             <S.MyIconText>장바구니</S.MyIconText>
           </S.MyIconBox>
 
-          <S.MyIconBox>
+          <S.MyIconBox ref={modalRef} onClick={handleMyBoxClick}>
             <S.MyIcon src={user} alt="마이페이지" />
             <S.MyIconText>마이페이지</S.MyIconText>
+            <S.DropBox>
+              {open && <Dropdown handleLogin={handleLogin} />}
+            </S.DropBox>
           </S.MyIconBox>
         </S.IconBox>
       </S.StickyWrapper>
@@ -51,6 +60,12 @@ function SellerNavBar() {
 
   const { modalRef, open, handleMyBoxClick } = useDropdown();
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user_type");
+    navigate(`/login`);
+  };
+
   return (
     <>
       <S.StickyWrapper>
@@ -60,7 +75,9 @@ function SellerNavBar() {
           <S.MyIconBox ref={modalRef} onClick={handleMyBoxClick}>
             <S.MyIcon src={user} alt="user 이미지" />
             <S.MyIconText>마이페이지</S.MyIconText>
-            <S.DropBox>{open && <Dropdown />}</S.DropBox>
+            <S.DropBox>
+              {open && <Dropdown handleLogout={handleLogout} />}
+            </S.DropBox>
           </S.MyIconBox>
 
           <Button
