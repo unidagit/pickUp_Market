@@ -5,8 +5,8 @@ import shoppingBag from "../../assets/shoppingBag.png";
 import shoppingCart from "../../assets/shoppingCart.png";
 import Button from "../atoms/buttons";
 import Logo from "../logo";
-import { useState, useRef, useEffect } from "react";
 import Dropdown from "../dropDown";
+import { useDropdown } from "../../hooks/useDropdown";
 
 function NavBar() {
   return (
@@ -49,29 +49,7 @@ function SellerNavBar() {
     navigate(`/seller`);
   };
 
-  //  드롭다운
-  const modalRef = useRef<HTMLDivElement>(null);
-  const [open, setOpen] = useState(false);
-
-  const handleMyBoxClick = () => {
-    setOpen(true);
-  };
-
-  useEffect(() => {
-    const clickModalOutside = (e: any) => {
-      const isInside = modalRef.current?.contains(e.target);
-      if (open && !isInside) {
-        setOpen(!open);
-      }
-    };
-
-    document.addEventListener("mousedown", clickModalOutside);
-
-    //클린업
-    return () => {
-      document.removeEventListener("mousedown", clickModalOutside);
-    };
-  }, [open]);
+  const { modalRef, open, handleMyBoxClick } = useDropdown();
 
   return (
     <>
