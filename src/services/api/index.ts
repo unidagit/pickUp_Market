@@ -20,9 +20,9 @@ export const apiPostLogin = async (data: IFormValue) => {
   return res.data;
 };
 
-export const apiGetProducts = async () => {
-  const { data } = await instance.get(`/products/`);
-  return data.results;
+export const apiGetProducts = async (pageParam: any) => {
+  const { data } = await instance.get(`/products/?page=${pageParam}`);
+  return data;
 };
 
 export const apiGetProductDetail = async (productId: string) => {
