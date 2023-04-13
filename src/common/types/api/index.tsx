@@ -35,3 +35,29 @@ export interface IOnsubmit {
   product_info: string;
   stock: number;
 }
+
+export interface IProductResult {
+  created_at: string;
+  image: string;
+  price: number;
+  product_id: number;
+  product_info: string;
+  product_name: string;
+  seller: number;
+  shipping_fee: number;
+  shipping_method: string;
+  stock: number;
+  store_name: string;
+  updated_at: string;
+}
+
+export interface IPage {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: IProductResult[];
+}
+
+export interface IPageParam {
+  pages: IPage[];
+}
