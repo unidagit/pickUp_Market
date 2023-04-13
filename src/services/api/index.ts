@@ -42,12 +42,24 @@ export const apiGetSellerProducts = async () => {
 };
 
 export const apiPostSellerProducts = async (formData: FieldValues) => {
-  const { data } = await instance.post(`/products/`, formData);
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `JWT ${getToken}`,
+    },
+  };
+  const { data } = await instance.post(`/products/`, formData, config);
+
   return data;
 };
 
 export const apiDeleteSellerProduct = async (product_id: number) => {
-  const { data } = await instance.delete(`/products/${product_id}/`);
+  const config = {
+    headers: {
+      Authorization: `JWT ${getToken}`,
+    },
+  };
+  const { data } = await instance.delete(`/products/${product_id}/`, config);
   return data;
 };
 
