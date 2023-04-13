@@ -9,12 +9,15 @@ const instance = axios.create({
   baseURL: `${BASE_URL}`,
 });
 
-export const apiPostLogin = async (data: IFormValue) => {
-  const { username, password } = data;
+export const apiPostLogin = async (loginData: {
+  data: FieldValues;
+  loginType: string;
+}) => {
+  const { data, loginType } = loginData;
   const config = {
-    username,
-    password,
-    login_type: "SELLER",
+    username: data.username,
+    password: data.password,
+    login_type: loginType,
   };
   const res = await instance.post(`/accounts/login/`, config);
   return res.data;

@@ -1,6 +1,6 @@
 import * as S from "./style";
 import { CenterLayout } from "../_layouts";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { IFormValue } from "../../common/types";
 import { LoginInput } from "../../components/inputs";
 import { ErrorText } from "../../components/text";
@@ -8,8 +8,10 @@ import { useLoginMutation } from "../../hooks/mutations/useLoginQuery";
 import Button from "../../components/atoms/buttons";
 import Label from "../../components/atoms/label";
 import { Link } from "react-router-dom";
+import { useSelectTab } from "../../hooks/useSelectTab";
 
 function LoginPage() {
+  const { loginType, handleSellerButton, handleBuyerButton } = useSelectTab();
   const {
     register,
     handleSubmit,
@@ -20,13 +22,22 @@ function LoginPage() {
   //쓰겠음. postLogin, errorMessage받음.
 
   //폼제출
-  const onSubmit = async (data: IFormValue) => {
-    postLogin(data); //쓰겠음!!! 호출함!
+  const onSubmit = async (data: FieldValues) => {
+    postLogin({ data, loginType }); //쓰겠음!!! 호출함!
   };
 
   return (
     <CenterLayout>
       <S.Wrapper>
+        <S.TabBox>
+          <S.SelectTab onClick={handleBuyerButton} loginType={loginType}>
+            구매회원 로그인
+          </S.SelectTab>
+
+          <S.SelectTab onClick={handleSellerButton} loginType={loginType}>
+            판매회원 로그인
+          </S.SelectTab>
+        </S.TabBox>
         <S.LoginWrapper>
           <S.FormBox onSubmit={handleSubmit(onSubmit)}>
             <S.InputBox>

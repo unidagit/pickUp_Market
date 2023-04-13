@@ -1,20 +1,53 @@
 import styled from "styled-components";
+import { SelectTabProps } from "../../common/types";
 
 export const Wrapper = styled.div`
-  width: 480px;
+  width: 550px;
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   margin: 0 2rem;
+`;
+
+export const TabBox = styled.ul`
+  display: flex;
+  position: absolute;
+  top: -70px;
+  z-index: 10;
+`;
+
+export const SelectTab = styled.li<SelectTabProps>`
+  width: 275px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 1.125rem;
+  border: 1px solid ${(props) => props.theme.sub.lighter};
+  border-radius: 10px 10px 0px 0px;
+  background-color: ${(props) =>
+    props.loginType === "BUYER" ? "#fff" : "#f2f2f2"};
+  z-index: ${(props) => (props.loginType === "BUYER" ? "10" : "30")};
+
+  &:nth-child(2) {
+    background-color: ${(props) =>
+      props.loginType === "SELLER" ? "#fff" : "#f2f2f2"};
+    z-index: ${(props) => (props.loginType === "SELLER" ? "10" : "30")};
+  }
 `;
 
 export const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
   border: 1px solid ${(props) => props.theme.sub.lighter};
-  border-radius: 0.5rem;
+  border-radius: 10px 10px 10px 10px;
+  border-top: none;
   padding: 35px;
   width: 100%;
+  background-color: ${(props) => props.theme.white.primary};
+  z-index: 30;
 `;
 
 export const FormBox = styled.form``;
