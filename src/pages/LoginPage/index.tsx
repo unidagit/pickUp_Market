@@ -1,7 +1,7 @@
 import * as S from "./style";
 import { CenterLayout } from "../_layouts";
 import { FieldValues, useForm } from "react-hook-form";
-import { IFormValue } from "../../common/types";
+
 import { LoginInput } from "../../components/inputs";
 import { ErrorText } from "../../components/text";
 import { useLoginMutation } from "../../hooks/mutations/useLoginQuery";
