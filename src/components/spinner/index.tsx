@@ -1,7 +1,12 @@
-import React from "react";
+import * as S from "./style";
+import { FadeLoader } from "react-spinners";
 
 function Spinner() {
-  return <div>로딩중 :)</div>;
+  return (
+    <S.Wrapper>
+      <FadeLoader color="#24242444" width={5} height={15} />
+    </S.Wrapper>
+  );
 }
 
 export default Spinner;
