@@ -53,8 +53,15 @@ function ProductDetailPage() {
 
             <S.NumberBox>
               <S.ParcelText>택배배송/ 무료배송</S.ParcelText>
+              <S.ParcelText>재고 : {productDetail.stock}개</S.ParcelText>
               <S.Line></S.Line>
-              <Count count={count} setCount={setCount} userType={userType} />
+
+              <Count
+                count={count}
+                setCount={setCount}
+                userType={userType}
+                stock={productDetail.stock}
+              />
               <S.Line></S.Line>
             </S.NumberBox>
 
@@ -68,7 +75,7 @@ function ProductDetailPage() {
                   fontSize="2.25rem"
                   fontWeight="700"
                   fontColor="#21BF48"
-                  price={productDetail.price}
+                  price={productDetail.price * count}
                   unitColor="
                   #21BF48"
                   unitSize="18px"

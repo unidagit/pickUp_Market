@@ -49,3 +49,10 @@ export interface IDefault {
 export interface SelectTabProps {
   loginType: string;
 }
+
+export interface ICountProps {
+  count: number;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
+  userType: string | null;
+  stock: number;
+}
