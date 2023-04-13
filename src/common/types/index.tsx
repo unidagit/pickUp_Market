@@ -45,3 +45,7 @@ export interface IDefault {
   product_info: string | undefined;
   shipping_method: string | undefined;
 }
+
+export interface SelectTabProps {
+  loginType: string;
+}
