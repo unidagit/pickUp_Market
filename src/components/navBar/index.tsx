@@ -7,6 +7,7 @@ import Button from "../atoms/buttons";
 import Logo from "../logo";
 import Dropdown from "../dropDown";
 import { useDropdown } from "../../hooks/useDropdown";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
@@ -35,7 +36,9 @@ function BuyerNavBar() {
         <S.IconBox>
           <S.MyIconBox>
             <S.MyIcon src={shoppingCart} alt="장바구니" />
-            <S.MyIconText>장바구니</S.MyIconText>
+            <S.MyIconText>
+              <Link to={`/cart`}>장바구니</Link>
+            </S.MyIconText>
           </S.MyIconBox>
 
           <S.MyIconBox ref={modalRef} onClick={handleMyBoxClick}>
