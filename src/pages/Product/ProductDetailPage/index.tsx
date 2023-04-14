@@ -6,25 +6,72 @@ import Count from "../../../components/count";
 import { useState } from "react";
 import { PriceCommaText } from "../../../components/text";
 import Button from "../../../components/atoms/buttons";
+import { useNavigate } from "react-router-dom";
+import { useCartPostQuery } from "../../../hooks/mutations/useCartPostQuery";
+import useCartListQuery from "../../../hooks/queries/useCartListQuery";
 
 function ProductDetailPage() {
+  const navigate = useNavigate();
   const [count, setCount] = useState(1);
   const { productDetail, isLoading } = useProductDetailQuery();
   const userType = localStorage.getItem("user_type");
+  const { postCartList } = useCartPostQuery();
+
+  //cartList
+  const { cartList } = useCartListQuery();
+  console.log(cartList);
 
   // if (isLoading) return <Spinner />;
 
-  const handleBuy = () => {
+  //구매자인지 체크
+  const userCheck = () => {
     if (userType === "SELLER") {
       alert("판매자는 구매할 수 없습니다.");
-      return;
+      return true;
+    } else if (!userType) {
+      navigate("/login");
+      return true;
     }
+    return false;
   };
 
+  //cart에 해당상품이 담겨있는지 없는지 확인
+  const cartCheck = () => {
+    //productDetail.product_id
+    for (let i = 0; i <= postCartList.length; i++) {
+      if (cartList[i]?.product_id === productDetail?.product_id) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  //바로구매 버튼
+  const handleBuy = () => {
+    const userTypeCheck = userCheck();
+    if (!userTypeCheck) return;
+  };
+
+  //장바구니 버튼
   const handleCart = () => {
-    if (userType === "SELLER") {
-      alert("판매자는 구매할 수 없습니다.");
+    const userTypeCheck = userCheck();
+
+    if (userTypeCheck) {
       return;
+    } else {
+      const cartListCheck = cartCheck();
+
+      //장바구니 중복 체크
+      if (cartListCheck === false) {
+        alert("장바구니에 있는 상품입니다.");
+      } else if (cartListCheck === true) {
+        //장바구니 api 호출
+        postCartList({
+          product_id: productDetail?.product_id,
+          quantity: count,
+          check: cartListCheck,
+        });
+      }
     }
   };
 
