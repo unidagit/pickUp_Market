@@ -110,3 +110,28 @@ export const apiPostJoin = async (joinData: IFormValue) => {
   const { data } = await instance.post(`/accounts/signup_seller/`, joinData);
   return data;
 };
+
+export const apiPostCart = async (data: {
+  product_id: number | undefined;
+  quantity: number;
+  check: boolean;
+}) => {
+  const config = {
+    headers: {
+      Authorization: `JWT ${getToken}`,
+    },
+  };
+  const res = await instance.post(`/cart/`, data, config);
+  return res.data;
+};
+
+export const apiGetCartList = async () => {
+  const getToken = localStorage.getItem("token");
+  const config = {
+    headers: {
+      Authorization: `JWT ${getToken}`,
+    },
+  };
+  const { data } = await instance.get(`/cart/`, config);
+  return data.results;
+};
