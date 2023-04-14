@@ -6,6 +6,7 @@ import ProductDetailPage from "../pages/Product/ProductDetailPage";
 import ProductSellerPage from "../pages/Product/ProductSellerPage";
 import ProductUploadPage from "../pages/Product/ProductUploadPage";
 import JoinPage from "../pages/JoinPage";
+import CartPage from "../pages/CartPage";
 
 export default function IRoute() {
   return (
@@ -17,6 +18,7 @@ export default function IRoute() {
         <Route path="/products/:id" element={<ProductDetailPage />}></Route>
         <Route path="/seller" element={<ProductSellerPage />}></Route>
         <Route path="/seller/:type" element={<ProductUploadPage />}></Route>
+        <Route path="/cart/" element={<CartPage />}></Route>
       </Routes>
     </BrowserRouter>
   );
