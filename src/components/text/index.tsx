@@ -18,6 +18,7 @@ function PriceCommaText({
   unitColor,
   unitSize,
   unitHeight,
+  unitWeight,
 }: IPrice) {
   const priceComma = (price: number) => price.toLocaleString();
   return (
@@ -29,7 +30,12 @@ function PriceCommaText({
       >
         {price && priceComma(price)}
       </S.PriceText>
-      <S.Unit unitColor={unitColor} unitSize={unitSize} unitHeight={unitHeight}>
+      <S.Unit
+        unitColor={unitColor}
+        unitSize={unitSize}
+        unitHeight={unitHeight}
+        unitWeight={unitWeight ? unitWeight : "400"}
+      >
         원
       </S.Unit>
     </S.PriceBox>

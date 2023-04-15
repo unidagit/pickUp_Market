@@ -29,7 +29,7 @@ export const PriceBox = styled.div`
 
 export const Unit = styled.p<IPrice>`
   font-size: ${(props) => props.unitSize};
-  font-weight: 400;
+  font-weight: ${(props) => props.unitWeight};
   color: ${(props) => props.unitColor};
   height: ${(props) => props.unitHeight};
 `;
