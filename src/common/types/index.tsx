@@ -23,6 +23,7 @@ export interface IPrice {
   unitColor?: string;
   unitSize?: string;
   unitHeight?: string;
+  unitWeight?: string;
 }
 
 export interface IProductInputProps {
