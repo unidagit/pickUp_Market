@@ -146,3 +146,13 @@ export const apiGetCartInfo = async (cart_item_id: number) => {
   const { data } = await instance.get(`/cart/${cart_item_id}/`, config);
   return data;
 };
+
+export const apiDeleteBuyerCart = async () => {
+  const config = {
+    headers: {
+      Authorization: `JWT ${getToken}`,
+    },
+  };
+  const { data } = await instance.delete(`/cart/`, config);
+  return data;
+};

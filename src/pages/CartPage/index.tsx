@@ -5,10 +5,13 @@ import CartListBox from "../../components/contents/cartListBox";
 import useCartListQuery from "../../hooks/queries/useCartListQuery";
 import Spinner from "../../components/spinner";
 import { ICartList } from "../../common/types";
+import Button from "../../components/atoms/buttons";
+import useCartAllDeleteQuery from "../../hooks/mutations/useCartAllDeleteQuery";
 
 function CartPage() {
   const { cartList, isLoading } = useCartListQuery();
   const [checkItems, setCheckItems] = useState<number[]>([]);
+  const { deleteCart } = useCartAllDeleteQuery();
 
   // 체크박스 전체 선택
   const handleAllCheck = (checked: boolean) => {
@@ -38,6 +41,11 @@ function CartPage() {
 
   console.log(checkItems);
 
+  //전체상품 삭제
+  const handleAllDelete = () => {
+    deleteCart();
+  };
+
   return (
     <DefaultLayout>
       <S.Wrapper>
@@ -60,7 +68,7 @@ function CartPage() {
           {cartList?.count === 0 ? (
             <S.CartCountText>장바구니에 담긴 상품이 없습니다.</S.CartCountText>
           ) : (
-            cartList?.results.map((item: ICartList, index: string) => (
+            cartList?.results.map((item: ICartList) => (
               <S.CartListContainer key={item.product_id}>
                 <CartListBox
                   product_id={item.product_id}
@@ -73,6 +81,18 @@ function CartPage() {
           )}
 
           {isLoading || (!cartList && <Spinner />)}
+
+          {cartList?.count === 0 ? null : (
+            <Button
+              width="200px"
+              fontColor="#000000"
+              backgroundColor="#ffff"
+              border="1px solid #767676"
+              onClick={handleAllDelete}
+            >
+              전체상품 삭제
+            </Button>
+          )}
         </S.ProductTableBox>
       </S.Wrapper>
     </DefaultLayout>
