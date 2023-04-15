@@ -156,3 +156,13 @@ export const apiDeleteBuyerCart = async () => {
   const { data } = await instance.delete(`/cart/`, config);
   return data;
 };
+
+export const apiDeleteBuyerSelectCart = async (cart_item_id: number) => {
+  const config = {
+    headers: {
+      Authorization: `JWT ${getToken}`,
+    },
+  };
+  const { data } = await instance.delete(`/cart/${cart_item_id}/`, config);
+  return data;
+};

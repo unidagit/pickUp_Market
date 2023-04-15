@@ -8,11 +8,13 @@ function CartListBox({
   cart_item_id,
   handleSingleCheck,
   checkItems,
+  handleSelectDelete,
 }: {
   product_id: number;
   cart_item_id: number;
   handleSingleCheck: (checked: boolean, id: number) => void;
   checkItems: number[];
+  handleSelectDelete: (id: number) => void;
 }) {
   const { cartDetail } = useCartDetailQuery(product_id); //상품가격, 이미지
   const { cartInfo } = useCartInfoQuery(cart_item_id); //구매하고 싶은 수량
@@ -63,6 +65,7 @@ function CartListBox({
             unitColor="#EB5757"
           />
         </S.SumPrice>
+        <S.CloseIcon onClick={() => handleSelectDelete(cart_item_id)} />
       </S.CartInfoContainer>
     </S.Wrapper>
   );

@@ -7,11 +7,13 @@ import Spinner from "../../components/spinner";
 import { ICartList } from "../../common/types";
 import Button from "../../components/atoms/buttons";
 import useCartAllDeleteQuery from "../../hooks/mutations/useCartAllDeleteQuery";
+import useCartSelectQuery from "../../hooks/mutations/useCartSelectQuery";
 
 function CartPage() {
   const { cartList, isLoading } = useCartListQuery();
   const [checkItems, setCheckItems] = useState<number[]>([]);
   const { deleteCart } = useCartAllDeleteQuery();
+  const { deleteSelectCart } = useCartSelectQuery();
 
   // 체크박스 전체 선택
   const handleAllCheck = (checked: boolean) => {
@@ -39,11 +41,15 @@ function CartPage() {
     }
   };
 
-  console.log(checkItems);
-
   //전체상품 삭제
   const handleAllDelete = () => {
     deleteCart();
+  };
+
+  //상품개별 삭제
+  const handleSelectDelete = (itemId: number) => {
+    deleteSelectCart(itemId);
+    console.log(itemId);
   };
 
   return (
@@ -75,6 +81,7 @@ function CartPage() {
                   cart_item_id={item.cart_item_id}
                   handleSingleCheck={handleSingleCheck}
                   checkItems={checkItems}
+                  handleSelectDelete={handleSelectDelete}
                 />
               </S.CartListContainer>
             ))
