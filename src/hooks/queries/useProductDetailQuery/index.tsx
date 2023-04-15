@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 export const useProductDetailQuery = () => {
   const { id } = useParams();
-  const productId = String(id);
+  const productId = Number(id);
   const {
     data: productDetail,
     isLoading,
