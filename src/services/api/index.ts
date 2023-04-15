@@ -28,7 +28,7 @@ export const apiGetProducts = async (pageParam: any) => {
   return data;
 };
 
-export const apiGetProductDetail = async (productId: string) => {
+export const apiGetProductDetail = async (productId: number) => {
   const { data } = await instance.get(`/products/${productId}/`);
   return data;
 };
@@ -133,5 +133,16 @@ export const apiGetCartList = async () => {
     },
   };
   const { data } = await instance.get(`/cart/`, config);
-  return data.results;
+  return data;
+};
+
+export const apiGetCartInfo = async (cart_item_id: number) => {
+  const getToken = localStorage.getItem("token");
+  const config = {
+    headers: {
+      Authorization: `JWT ${getToken}`,
+    },
+  };
+  const { data } = await instance.get(`/cart/${cart_item_id}/`, config);
+  return data;
 };
