@@ -21,13 +21,42 @@ export const ProductTableBox = styled.div`
 `;
 
 export const ProductTable = styled.ul`
-  display: flex;
+  display: grid;
   align-items: center;
+  grid-template-columns: 0.1fr 5.9fr 2fr 2fr;
   padding: 18px;
   background-color: ${(props) => props.theme.sub.lighter};
-  border-bottom: 1px solid ${(props) => props.theme.sub.lighter};
+
   border-radius: 8px;
   text-align: center;
+`;
+
+export const CheckInput = styled.input`
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  border: 2px solid ${(props) => props.theme.main.primary};
+  position: relative;
+  appearance: none;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+  }
+
+  &:checked {
+    &:before {
+      background: ${(props) => props.theme.main.primary};
+    }
+  }
 `;
 
 export const CartCountText = styled.p`
@@ -40,15 +69,16 @@ export const CartCountText = styled.p`
 
 export const Info = styled.li`
   font-size: 18px;
-  flex: 5;
 `;
 
 export const Price = styled.li`
   font-size: 18px;
-  flex: 2.2;
 `;
 
 export const Edit = styled.li`
   font-size: 18px;
-  flex: 2.2;
+`;
+
+export const CartListContainer = styled.div`
+  margin: 15px 0;
 `;
