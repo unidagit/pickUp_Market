@@ -23,9 +23,11 @@ export const ProductTableBox = styled.div`
 export const ProductTable = styled.ul`
   display: grid;
   align-items: center;
-  grid-template-columns: 0.1fr 5.9fr 2fr 2fr;
+  grid-template-columns:
+    0.1fr 5.9fr 2.9fr
+    2.4fr;
   padding: 18px;
-  background-color: ${(props) => props.theme.sub.lighter};
+  background-color: ${(props) => props.theme.sub.verylighter};
 
   border-radius: 8px;
   text-align: center;
@@ -82,3 +84,16 @@ export const Edit = styled.li`
 export const CartListContainer = styled.div`
   margin: 15px 0;
 `;
+
+export const CartFinalPriceContainer = styled.ul`
+  height: 150px;
+  margin-top: 80px;
+  background: ${(props) => props.theme.sub.verylighter};
+  border-radius: 10px;
+`;
+
+export const AllPriceBox = styled.li``;
+
+export const ShippingBox = styled.li``;
+
+export const PaymentBox = styled.li``;
