@@ -34,8 +34,8 @@ export const ProductTable = styled.ul`
 `;
 
 export const CheckInput = styled.input`
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 17.6px;
+  height: 17.6px;
   border-radius: 50%;
   border: 2px solid ${(props) => props.theme.main.primary};
   position: relative;
@@ -49,9 +49,10 @@ export const CheckInput = styled.input`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 0.7rem;
-    height: 0.7rem;
+    width: 11.2px;
+    height: 11.2px;
     border-radius: 50%;
+    background: transparent;
   }
 
   &:checked {
@@ -69,15 +70,7 @@ export const CartCountText = styled.p`
   margin-top: 100px;
 `;
 
-export const Info = styled.li`
-  font-size: 18px;
-`;
-
-export const Price = styled.li`
-  font-size: 18px;
-`;
-
-export const Edit = styled.li`
+export const TableText = styled.li`
   font-size: 18px;
 `;
 
@@ -87,12 +80,34 @@ export const CartListContainer = styled.div`
 
 export const CartFinalPriceContainer = styled.ul`
   height: 150px;
-  margin-top: 80px;
+  margin: 80px 0px 40px;
   background: ${(props) => props.theme.sub.verylighter};
   border-radius: 10px;
+  display: grid;
+  grid-template-columns:
+    1fr
+    0.3fr 1fr 1fr 0.3fr;
+  gap: 20px;
+  padding: 46px;
+  align-items: center;
+  text-align: center;
 `;
 
-export const AllPriceBox = styled.li``;
+export const BtnBox = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const PriceBox = styled.li`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const PriceTitle = styled.p`
+  font-size: 1rem;
+  margin-bottom: 12px;
+`;
 
 export const ShippingBox = styled.li``;
 
