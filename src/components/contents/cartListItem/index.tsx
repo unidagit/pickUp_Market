@@ -3,7 +3,7 @@ import { PriceCommaText } from "../../text";
 import * as S from "./style";
 
 function CartListItem({
-  data,
+  cartDetailData,
   handleSingleCheck,
   checkItems,
   handleSelectDelete,
@@ -16,28 +16,34 @@ function CartListItem({
         <div>
           <S.CheckInput
             type="checkbox"
-            onChange={(event) => handleSingleCheck(event, data)}
+            onChange={(e) =>
+              handleSingleCheck(
+                e.target.checked,
+                cartDetailData,
+                cartInfo?.quantity
+              )
+            }
             // 체크된 아이템 배열에 해당 아이템이 있을 경우 선택 활성화, 아닐 시 해제
-            checked={checkItems.includes(data) ? true : false}
+            checked={checkItems.includes(cartDetailData) ? true : false}
           />
         </div>
         <S.ProductBox>
-          <S.Img src={data?.image} alt="상품이미지" />
+          <S.Img src={cartDetailData?.image} alt="상품이미지" />
           <S.InfoBox>
-            <S.StoreName>{data?.store_name}</S.StoreName>
-            <S.ProductName>{data?.product_name}</S.ProductName>
+            <S.StoreName>{cartDetailData?.store_name}</S.StoreName>
+            <S.ProductName>{cartDetailData?.product_name}</S.ProductName>
             <PriceCommaText
-              price={data?.price}
+              price={cartDetailData?.price}
               fontSize="16px"
               fontWeight="700"
               unitSize="16px"
               unitWeight="700"
             />
             <S.Shipping>
-              {data?.shipping_fee === 0 ? (
+              {cartDetailData?.shipping_fee === 0 ? (
                 <p>택배배송/무료배송</p>
               ) : (
-                <PriceCommaText price={data?.shipping_fee} />
+                <PriceCommaText price={cartDetailData?.shipping_fee} />
               )}
             </S.Shipping>
           </S.InfoBox>
@@ -47,7 +53,7 @@ function CartListItem({
             count={cartInfo?.quantity}
             // setCount={setCount}
             // userType={userType}
-            stock={data?.stock}
+            stock={cartDetailData?.stock}
             // handleMinus={handleMinus}
             // handleAdd={handleAdd}
           />
@@ -56,7 +62,8 @@ function CartListItem({
           <PriceCommaText
             price={
               cartInfo
-                ? cartInfo.quantity * data?.price + data?.shipping_fee
+                ? cartInfo.quantity * cartDetailData?.price +
+                  cartDetailData?.shipping_fee
                 : ""
             }
             fontSize="18px"
@@ -68,7 +75,14 @@ function CartListItem({
           />
         </S.SumPrice>
         <S.CloseIcon
-          onClick={() => handleSelectDelete(cartInfo?.cart_item_id)}
+          onClick={() =>
+            handleSelectDelete(
+              cartInfo?.cart_item_id,
+              cartInfo?.quantity,
+              cartDetailData?.shipping_fee,
+              cartDetailData?.price
+            )
+          }
         />
       </S.CartInfoContainer>
     </S.Wrapper>
