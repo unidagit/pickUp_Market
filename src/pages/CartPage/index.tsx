@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { DefaultLayout } from "../_layouts";
 import * as S from "./style";
 import useCartListQuery from "../../hooks/queries/useCartListQuery";
@@ -9,114 +9,108 @@ import useCartInfoQuery from "../../hooks/queries/useCartInfoQuery";
 import { useNavigate } from "react-router-dom";
 import CartListBox from "../../components/contents/cartListBox";
 import Spinner from "../../components/spinner";
+import { IProductResult } from "../../common/types/api";
 
 function CartPage() {
   const navigate = useNavigate();
   const { cartList, isLoading, cartDetail } = useCartListQuery();
-  const [checkItems, setCheckItems] = useState<number[]>([]);
+  const [checkItems, setCheckItems] = useState<IProductResult[]>([]);
   const { deleteCart } = useCartAllDeleteQuery();
   const { deleteSelectCart } = useCartSelectQuery();
   const [cartItemPayPrice, setCartItemPayPrice] = useState(0);
   const [cartItemFee, setCartItemFee] = useState(0);
-  const [cartItemTotalPrice, setCartItemTotalPrice] = useState(0);
-  const { cartInfo } = useCartInfoQuery({ cartList }); //구매하고 싶은 수량 리스트에서 호출하고 받은 cart_item_id 보내서 productId 받아옴.
+  const { cartInfo } = useCartInfoQuery({ cartList });
 
-  const cartTotalInfo = (
-    totalPrice: number,
-    shippingFee: number,
-    payPrice: number,
-    type: string
-  ) => {
-    if (type === "all") {
-      setCartItemTotalPrice((prev) => prev + totalPrice);
-      setCartItemFee((prev) => prev + shippingFee);
-      setCartItemPayPrice((prev) => prev + payPrice);
-    } else if (type === "plus") {
-      setCartItemTotalPrice((prev) => prev + totalPrice);
-      setCartItemFee((prev) => prev + shippingFee);
-      setCartItemPayPrice((prev) => prev + payPrice);
-    } else if (type === "minus") {
-      setCartItemTotalPrice((prev) => prev - totalPrice);
-      setCartItemFee((prev) => prev - shippingFee);
-      setCartItemPayPrice((prev) => prev - payPrice);
-    } else if (type === "reset") {
-      setCartItemTotalPrice(0);
-      setCartItemFee(0);
-      setCartItemPayPrice(0);
-    }
-  };
+  const [isCheck, setIsCheck] = useState(false);
+
+  //결제예정 금액
+  const cartItemTotalPrice = cartItemPayPrice + cartItemFee;
+
+  const handleCheckItem = useCallback(
+    (checked: boolean, data: IProductResult, quantity: number) => {
+      if (checked) {
+        setCheckItems([...checkItems, data]);
+        setCartItemPayPrice((pre) => pre + data.price * quantity);
+        setCartItemFee((pre) => pre + data.shipping_fee);
+      } else {
+        setCheckItems(checkItems.filter((el) => el !== data));
+        setCartItemPayPrice((pre) => pre - data.price * quantity);
+        setCartItemFee((pre) => pre - data.shipping_fee);
+      }
+    },
+    [checkItems]
+  );
 
   // 체크박스 전체 선택
-  const handleAllCheck = (checked: boolean) => {
-    if (checked) {
-      const checkedArr: any = []; //디테일정보
-      cartDetail?.map((el: any) => checkedArr.push(el.data));
-
-      const cartInfoArr: any = []; //수량정보 caerInfo
-      cartInfo?.map((el: any) => cartInfoArr.push(el.data));
-
-      console.log(checkedArr);
-      console.log(cartInfoArr);
-
-      for (let i = 0; i < cartInfoArr?.length; i++) {
-        for (let j = 0; j < checkedArr.length; j++) {
-          if (cartInfoArr[i].product_id === checkedArr[j].product_id) {
-            const totalPrice = checkedArr[j].price * cartInfoArr[i].quantity;
-            const shippingFee = checkedArr[j].shipping_fee;
-            const payPrice =
-              checkedArr[j].price * cartInfoArr[i].quantity +
-              checkedArr[j].shipping_fee;
-            cartTotalInfo(totalPrice, shippingFee, payPrice, "all");
-          }
-        }
+  const handleAllCheck = useCallback(
+    (checked: boolean) => {
+      if (checked) {
+        //처음에 초기화
+        setCheckItems([]);
+        //아이템담기
+        const items = cartDetail.map((item) => item.data) as IProductResult[];
+        setCheckItems(items);
+        //전체 체크버튼 활성화
+        setIsCheck(true);
+        //수량구하기
+        const cartInfoId = cartInfo.map((item: any) => item.data.quantity);
+        //상품금액 * 수량
+        const allPrice = cartDetail.reduce(
+          (pre, item: any, index) => pre + item.data.price * cartInfoId[index],
+          0
+        );
+        setCartItemPayPrice(allPrice);
+        //배송비
+        const fee = cartDetail.reduce(
+          (pre, item: any) => pre + item.data.shipping_fee,
+          0
+        );
+        setCartItemFee(fee);
+        setCheckItems(items);
+      } else {
+        setCheckItems([]);
+        setIsCheck(false);
+        setCartItemPayPrice(0);
+        setCartItemFee(0);
       }
+    },
+    [cartDetail, cartInfo]
+  );
 
-      setCheckItems(checkedArr);
-      // 모든 체크박스 선택 상태로 변경
+  useEffect(() => {
+    if (cartList?.count === checkItems.length) {
+      setIsCheck(true);
     } else {
-      // 전체 선택 해제 시 checkItems 를 빈 배열로 상태 업데이트
-      setCheckItems([]);
-      cartTotalInfo(0, 0, 0, "reset");
+      setIsCheck(false);
     }
-  };
+  }, [checkItems.length, cartList?.count]);
 
   // 체크박스 단일 선택
   const handleSingleCheck = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    data: any
+    checked: boolean,
+    data: IProductResult,
+    quantity: number
   ) => {
-    const cartInfoArr: any[] = []; //수량정보 caerInfo
-    cartInfo?.map((el: any) => cartInfoArr.push(el.data));
-
-    const checkData = cartInfoArr?.find(
-      (item: { product_id: number }) => item.product_id === data.product_id
-    );
-
-    const totalPrice = data.price * checkData.quantity;
-    const shippingFee = data.shipping_fee;
-    const payPrice = data.price * checkData.quantity + data.shipping_fee;
-
-    if (event.target.checked) {
-      cartTotalInfo(totalPrice, shippingFee, payPrice, "plus");
-      setCheckItems((prev) => [...prev, data]);
-      console.log(checkItems);
-    } else {
-      cartTotalInfo(totalPrice, shippingFee, payPrice, "minus");
-      setCheckItems(
-        checkItems.filter((el: any) => el.product_id !== data.product_id)
-      );
-    }
+    handleCheckItem(checked, data, quantity);
   };
 
   //전체상품 삭제
   const handleAllDelete = () => {
     deleteCart();
+    setCartItemPayPrice(0);
+    setCartItemFee(0);
   };
 
   //상품개별 삭제
-  const handleSelectDelete = (itemId: number) => {
+  const handleSelectDelete = (
+    itemId: number,
+    price: number,
+    shippingFee: number,
+    quantity: number
+  ) => {
     deleteSelectCart(itemId);
-    console.log(itemId);
+    setCartItemPayPrice(cartItemPayPrice - price * quantity);
+    setCartItemFee(cartItemFee - shippingFee);
   };
 
   const handleOrder = () => {
@@ -145,6 +139,7 @@ function CartPage() {
               cartItemPayPrice={cartItemPayPrice}
               cartItemFee={cartItemFee}
               cartItemTotalPrice={cartItemTotalPrice}
+              isCheck={isCheck}
             />
           )}
           <S.BtnBox>
