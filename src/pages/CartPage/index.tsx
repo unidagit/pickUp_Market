@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { DefaultLayout } from "../_layouts";
 import * as S from "./style";
-import CartListBox from "../../components/contents/cartListBox";
 import useCartListQuery from "../../hooks/queries/useCartListQuery";
-import Spinner from "../../components/spinner";
 import Button from "../../components/atoms/buttons";
 import useCartAllDeleteQuery from "../../hooks/mutations/useCartAllDeleteQuery";
 import useCartSelectQuery from "../../hooks/mutations/useCartSelectQuery";
 import useCartInfoQuery from "../../hooks/queries/useCartInfoQuery";
-import { PriceCommaText } from "../../components/text";
-import { IoAddCircleOutline } from "react-icons/io5";
-import { TiEquals } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
+import CartListBox from "../../components/contents/cartListBox";
+import Spinner from "../../components/spinner";
 
 function CartPage() {
   const navigate = useNavigate();
@@ -75,7 +72,6 @@ function CartPage() {
       }
 
       setCheckItems(checkedArr);
-
       // 모든 체크박스 선택 상태로 변경
     } else {
       // 전체 선택 해제 시 checkItems 를 빈 배열로 상태 업데이트
@@ -133,92 +129,24 @@ function CartPage() {
     <DefaultLayout>
       <S.Wrapper>
         <S.MainTitle>장바구니</S.MainTitle>
-
         <S.ProductTableBox>
-          <S.ProductTable>
-            <S.CheckInput
-              type="checkbox"
-              onChange={(e) => handleAllCheck(e.target.checked)}
-            />
-            <S.TableText>상품정보</S.TableText>
-            <S.TableText>수량</S.TableText>
-            <S.TableText>상품금액</S.TableText>
-          </S.ProductTable>
-
-          {cartList?.length === 0 ? (
-            <S.CartCountText>장바구니에 담긴 상품이 없습니다.</S.CartCountText>
+          {isLoading || !cartList || !cartInfo ? (
+            <Spinner />
           ) : (
-            cartDetail?.map((item: any, index: number) => (
-              <S.CartListContainer key={item?.data?.product_id}>
-                <CartListBox
-                  data={item.data}
-                  cartInfo={cartInfo?.[index].data}
-                  handleSingleCheck={handleSingleCheck}
-                  checkItems={checkItems}
-                  handleSelectDelete={handleSelectDelete}
-                />
-              </S.CartListContainer>
-            ))
+            <CartListBox
+              handleAllDelete={handleAllDelete}
+              handleSelectDelete={handleSelectDelete}
+              handleSingleCheck={handleSingleCheck}
+              handleAllCheck={handleAllCheck}
+              cartList={cartList}
+              cartDetail={cartDetail}
+              cartInfo={cartInfo}
+              checkItems={checkItems}
+              cartItemPayPrice={cartItemPayPrice}
+              cartItemFee={cartItemFee}
+              cartItemTotalPrice={cartItemTotalPrice}
+            />
           )}
-
-          {(isLoading || !cartList || !cartInfo) && <Spinner />}
-
-          {cartList?.count === 0 ? null : (
-            <Button
-              width="200px"
-              fontColor="#000000"
-              backgroundColor="#ffff"
-              border="1px solid #767676"
-              onClick={handleAllDelete}
-            >
-              전체상품 삭제
-            </Button>
-          )}
-          <S.CartFinalPriceContainer>
-            <S.PriceBox>
-              <S.PriceTitle>총 상품금액</S.PriceTitle>
-              <PriceCommaText
-                price={cartItemPayPrice}
-                fontSize="1.5rem"
-                fontWeight="700"
-                unitSize="1rem"
-              />
-            </S.PriceBox>
-
-            <S.PriceBox>
-              <IoAddCircleOutline />
-            </S.PriceBox>
-
-            <S.PriceBox>
-              <S.PriceTitle>배송비</S.PriceTitle>
-              <PriceCommaText
-                price={cartItemFee}
-                fontSize="1.5rem"
-                fontWeight="700"
-                unitSize="1rem"
-              />
-            </S.PriceBox>
-
-            <S.PriceBox>
-              <TiEquals />
-            </S.PriceBox>
-
-            <S.PriceBox>
-              <S.PriceTitle>결제 예정 금액</S.PriceTitle>
-              <PriceCommaText
-                price={cartItemTotalPrice}
-                fontSize="1.5rem"
-                fontWeight="700"
-                unitSize="1rem"
-                unitColor="#EB5757"
-                fontColor="#EB5757"
-              />
-            </S.PriceBox>
-
-            <S.ShippingBox></S.ShippingBox>
-
-            <S.PaymentBox></S.PaymentBox>
-          </S.CartFinalPriceContainer>
           <S.BtnBox>
             <Button width="220px" onClick={handleOrder}>
               주문하기

@@ -1,77 +1,109 @@
-import Count from "../../count";
+import Button from "../../atoms/buttons";
 import { PriceCommaText } from "../../text";
+import CartListItem from "../cartListItem";
 import * as S from "./style";
+import { IoAddCircleOutline } from "react-icons/io5";
+import { TiEquals } from "react-icons/ti";
 
 function CartListBox({
-  data,
-  handleSingleCheck,
-  checkItems,
+  handleAllDelete,
   handleSelectDelete,
+  handleSingleCheck,
+  handleAllCheck,
+  cartList,
+  cartDetail,
   cartInfo,
+  checkItems,
+  cartItemPayPrice,
+  cartItemFee,
+  cartItemTotalPrice,
 }: any) {
-  console.log(cartInfo);
   return (
-    <S.Wrapper>
-      <S.CartInfoContainer>
-        <div>
-          <S.CheckInput
-            type="checkbox"
-            onChange={(event) => handleSingleCheck(event, data)}
-            // 체크된 아이템 배열에 해당 아이템이 있을 경우 선택 활성화, 아닐 시 해제
-            checked={checkItems.includes(data) ? true : false}
-          />
-        </div>
-        <S.ProductBox>
-          <S.Img src={data?.image} alt="상품이미지" />
-          <S.InfoBox>
-            <S.StoreName>{data?.store_name}</S.StoreName>
-            <S.ProductName>{data?.product_name}</S.ProductName>
-            <PriceCommaText
-              price={data?.price}
-              fontSize="16px"
-              fontWeight="700"
-              unitSize="16px"
-              unitWeight="700"
-            />
-            <S.Shipping>
-              {data?.shipping_fee === 0 ? (
-                <p>택배배송/무료배송</p>
-              ) : (
-                <PriceCommaText price={data?.shipping_fee} />
-              )}
-            </S.Shipping>
-          </S.InfoBox>
-        </S.ProductBox>
-        <S.Edit>
-          <Count
-            count={cartInfo?.quantity}
-            // setCount={setCount}
-            // userType={userType}
-            stock={data?.stock}
-            // handleMinus={handleMinus}
-            // handleAdd={handleAdd}
-          />
-        </S.Edit>
-        <S.SumPrice>
-          <PriceCommaText
-            price={
-              cartInfo
-                ? cartInfo.quantity * data?.price + data?.shipping_fee
-                : ""
-            }
-            fontSize="18px"
-            fontWeight="700"
-            fontColor="#EB5757"
-            unitSize="18px"
-            unitWeight="700"
-            unitColor="#EB5757"
-          />
-        </S.SumPrice>
-        <S.CloseIcon
-          onClick={() => handleSelectDelete(cartInfo?.cart_item_id)}
+    <>
+      <S.ProductTable>
+        <S.CheckInput
+          type="checkbox"
+          onChange={(e) => handleAllCheck(e.target.checked)}
         />
-      </S.CartInfoContainer>
-    </S.Wrapper>
+        <S.TableText>상품정보</S.TableText>
+        <S.TableText>수량</S.TableText>
+        <S.TableText>상품금액</S.TableText>
+      </S.ProductTable>
+
+      {cartList?.length === 0 ? (
+        <S.CartCountText>장바구니에 담긴 상품이 없습니다.</S.CartCountText>
+      ) : (
+        cartDetail?.map((item: any, index: number) => (
+          <S.CartListContainer key={item?.data?.product_id}>
+            <CartListItem
+              data={item.data}
+              cartInfo={cartInfo?.[index].data}
+              handleSingleCheck={handleSingleCheck}
+              checkItems={checkItems}
+              handleSelectDelete={handleSelectDelete}
+            />
+          </S.CartListContainer>
+        ))
+      )}
+
+      {cartList?.count === 0 ? null : (
+        <Button
+          width="200px"
+          fontColor="#000000"
+          backgroundColor="#ffff"
+          border="1px solid #767676"
+          onClick={handleAllDelete}
+        >
+          전체상품 삭제
+        </Button>
+      )}
+
+      <S.CartFinalPriceContainer>
+        <S.PriceBox>
+          <S.PriceTitle>총 상품금액</S.PriceTitle>
+          <PriceCommaText
+            price={cartItemPayPrice}
+            fontSize="1.5rem"
+            fontWeight="700"
+            unitSize="1rem"
+          />
+        </S.PriceBox>
+
+        <S.PriceBox>
+          <IoAddCircleOutline />
+        </S.PriceBox>
+
+        <S.PriceBox>
+          <S.PriceTitle>배송비</S.PriceTitle>
+          <PriceCommaText
+            price={cartItemFee}
+            fontSize="1.5rem"
+            fontWeight="700"
+            unitSize="1rem"
+          />
+        </S.PriceBox>
+
+        <S.PriceBox>
+          <TiEquals />
+        </S.PriceBox>
+
+        <S.PriceBox>
+          <S.PriceTitle>결제 예정 금액</S.PriceTitle>
+          <PriceCommaText
+            price={cartItemTotalPrice}
+            fontSize="1.5rem"
+            fontWeight="700"
+            unitSize="1rem"
+            unitColor="#EB5757"
+            fontColor="#EB5757"
+          />
+        </S.PriceBox>
+
+        <S.ShippingBox></S.ShippingBox>
+
+        <S.PaymentBox></S.PaymentBox>
+      </S.CartFinalPriceContainer>
+    </>
   );
 }
 

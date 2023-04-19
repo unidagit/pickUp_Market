@@ -1,31 +1,29 @@
 import styled from "styled-components";
-import { SlClose } from "react-icons/sl";
 
-export const Wrapper = styled.div`
-  position: relative;
-  height: 200px;
-  padding: 18px;
-
-  border: 1px solid ${(props) => props.theme.sub.lighter};
+export const ProductTableBox = styled.div`
+  height: 65vh;
+  /* border: 1px solid ${(props) => props.theme.sub.lighter}; */
+  margin-top: 52px;
+  border-radius: 5px;
   background-color: ${(props) => props.theme.white.primary};
-  border-radius: 8px;
 `;
 
-export const CartInfoContainer = styled.div`
-  width: 100%;
-  height: 100%;
+export const ProductTable = styled.ul`
   display: grid;
-  grid-template-columns: 0.1fr 5.8fr 2fr 2fr;
   align-items: center;
-`;
+  grid-template-columns:
+    0.1fr 5.9fr 2.9fr
+    2.4fr;
+  padding: 18px;
+  background-color: ${(props) => props.theme.sub.verylighter};
 
-export const ProductBox = styled.div`
-  display: flex;
+  border-radius: 8px;
+  text-align: center;
 `;
 
 export const CheckInput = styled.input`
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 17.6px;
+  height: 17.6px;
   border-radius: 50%;
   border: 2px solid ${(props) => props.theme.main.primary};
   position: relative;
@@ -39,9 +37,10 @@ export const CheckInput = styled.input`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 0.7rem;
-    height: 0.7rem;
+    width: 11.2px;
+    height: 11.2px;
     border-radius: 50%;
+    background: transparent;
   }
 
   &:checked {
@@ -51,63 +50,48 @@ export const CheckInput = styled.input`
   }
 `;
 
-export const Img = styled.img`
-  width: 10rem;
-  height: 10rem;
+export const CartCountText = styled.p`
+  width: 100%;
+  font-size: 17px;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 100px;
+`;
+
+export const TableText = styled.li`
+  font-size: 18px;
+`;
+
+export const CartListContainer = styled.div`
+  margin: 15px 0;
+`;
+
+export const CartFinalPriceContainer = styled.ul`
+  height: 150px;
+  margin: 80px 0px 40px;
+  background: ${(props) => props.theme.sub.verylighter};
   border-radius: 10px;
-  object-fit: cover;
-  margin: 0rem 2.5rem;
-`;
-
-export const InfoBox = styled.ul``;
-
-export const StoreName = styled.li`
-  font-size: 14px;
-  margin-bottom: 10px;
-  font-weight: 400;
-  color: ${(props) => props.theme.sub.primary};
-`;
-
-export const ProductName = styled.li`
-  font-size: 18px;
-  margin-bottom: 10px;
-  font-weight: 400;
-`;
-
-export const Shipping = styled.li`
-  font-size: 18px;
-  margin-top: 40px;
-  color: ${(props) => props.theme.sub.primary};
-`;
-
-export const SumPrice = styled.p`
-  /* font-size: 18px; */
-  display: flex;
-  justify-content: center;
-
-  /* text-align: center; */
-`;
-
-export const Edit = styled.p`
-  font-size: 18px;
+  display: grid;
+  grid-template-columns:
+    1fr
+    0.3fr 1fr 1fr 0.3fr;
+  gap: 20px;
+  padding: 46px;
+  align-items: center;
   text-align: center;
 `;
 
-export const CloseIcon = styled(SlClose)`
-  position: absolute;
-  right: 20px;
-  font-size: 25px;
-  color: ${(props) => props.theme.sub.primary};
-  cursor: pointer;
-
-  &:hover {
-    color: ${(props) => props.theme.sub.darker};
-  }
+export const PriceBox = styled.li`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-// export const CartInfoBox = styled.div`
-//   width: 100%;
-//   display: flex;
-//   align-items: center;
-//   flex: 2;
-// `;
+export const PriceTitle = styled.p`
+  font-size: 1rem;
+  margin-bottom: 12px;
+`;
+
+export const ShippingBox = styled.li``;
+
+export const PaymentBox = styled.li``;
