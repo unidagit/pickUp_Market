@@ -17,6 +17,7 @@ function CartListBox({
   cartItemPayPrice,
   cartItemFee,
   cartItemTotalPrice,
+  isCheck,
 }: any) {
   return (
     <>
@@ -24,19 +25,20 @@ function CartListBox({
         <S.CheckInput
           type="checkbox"
           onChange={(e) => handleAllCheck(e.target.checked)}
+          checked={isCheck}
         />
         <S.TableText>상품정보</S.TableText>
         <S.TableText>수량</S.TableText>
         <S.TableText>상품금액</S.TableText>
       </S.ProductTable>
 
-      {cartList?.length === 0 ? (
+      {cartDetail?.length === 0 ? (
         <S.CartCountText>장바구니에 담긴 상품이 없습니다.</S.CartCountText>
       ) : (
         cartDetail?.map((item: any, index: number) => (
           <S.CartListContainer key={item?.data?.product_id}>
             <CartListItem
-              data={item.data}
+              cartDetailData={item.data}
               cartInfo={cartInfo?.[index].data}
               handleSingleCheck={handleSingleCheck}
               checkItems={checkItems}
@@ -98,10 +100,6 @@ function CartListBox({
             fontColor="#EB5757"
           />
         </S.PriceBox>
-
-        <S.ShippingBox></S.ShippingBox>
-
-        <S.PaymentBox></S.PaymentBox>
       </S.CartFinalPriceContainer>
     </>
   );
