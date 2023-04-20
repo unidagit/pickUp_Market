@@ -19,7 +19,6 @@ function ProductDetailPage() {
 
   //cartList
   const { cartList } = useCartListQuery();
-  console.log(cartList);
 
   // if (isLoading) return <Spinner />;
 
@@ -75,6 +74,34 @@ function ProductDetailPage() {
     }
   };
 
+  //count
+  const handleMinus = () => {
+    if (userType === "SELLER") {
+      alert("판매자는 구매할 수 없습니다.");
+      return;
+    }
+
+    if (count > 1) {
+      setCount(count - 1);
+      return;
+    }
+  };
+
+  const handleAdd = (stock: number) => {
+    //seller 금지
+    if (userType === "SELLER") {
+      alert("판매자는 구매할 수 없습니다.");
+      return;
+    }
+
+    if (stock > count && stock > 0) {
+      setCount(count + 1);
+      return;
+    } else if (stock === 0) {
+      alert("현재 품절입니다");
+    }
+  };
+
   return (
     <DefaultLayout>
       {isLoading || !productDetail ? (
@@ -105,9 +132,11 @@ function ProductDetailPage() {
 
               <Count
                 count={count}
-                setCount={setCount}
-                userType={userType}
+                // setCount={setCount}
+                // userType={userType}
                 stock={productDetail.stock}
+                handleMinus={handleMinus}
+                handleAdd={handleAdd}
               />
               <S.Line></S.Line>
             </S.NumberBox>
