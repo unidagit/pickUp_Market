@@ -99,6 +99,7 @@ function CartPage() {
     deleteCart();
     setCartItemPayPrice(0);
     setCartItemFee(0);
+    setIsCheck(false);
   };
 
   //상품개별 삭제
@@ -115,7 +116,12 @@ function CartPage() {
 
   const handleOrder = () => {
     navigate(`/order`, {
-      state: { checkItems, cartItemTotalPrice, cartItemFee },
+      state: {
+        orderItems: cartList,
+        orderCheckItems: checkItems,
+        cartItemTotalPrice: cartItemTotalPrice,
+        cartItemFee: cartItemFee,
+      },
     });
   };
 
@@ -124,7 +130,7 @@ function CartPage() {
       <S.Wrapper>
         <S.MainTitle>장바구니</S.MainTitle>
         <S.ProductTableBox>
-          {isLoading || !cartList || !cartInfo ? (
+          {isLoading ? (
             <Spinner />
           ) : (
             <CartListBox
