@@ -25,7 +25,7 @@ function OrderListItem({ checkItem, orderItems }: any) {
 
         <S.Price>
           <PriceCommaText
-            price={price}
+            price={price * orderItems}
             fontSize="18px"
             fontWeight="700"
             unitSize="18px"
