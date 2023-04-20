@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Box = styled.div`
-  width: 380px;
+  width: 100%;
   height: 380px;
 `;
 
