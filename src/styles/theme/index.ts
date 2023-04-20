@@ -14,6 +14,7 @@ export const theme: DefaultTheme = {
   sub: {
     darker: "#181818",
     lighter: "#C4C4C4",
+    verylighter: "#F2F2F2",
     primary: "#767676",
   },
 };

@@ -15,6 +15,7 @@ declare module "styled-components" {
     sub: {
       darker: string;
       lighter: string;
+      verylighter: string;
       primary: string;
     };
   }
