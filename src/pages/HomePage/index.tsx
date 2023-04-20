@@ -20,6 +20,7 @@ function HomePage() {
           dataLength={data?.pages?.length || 0}
           next={fetchNextPage}
           hasMore={!!hasNextPage}
+          style={{ overflow: "hidden" }}
           loader={
             isFetchingNextPage && hasNextPage ? (
               <Spinner />
