@@ -11,6 +11,10 @@ import { IProductInputProps } from "../../common/types";
 //   register?: any;
 // }
 
+// function CheckInput() {
+//   return <S.CheckInput type="checkbox" />;
+// }
+
 function LoginInput({ id, type, placeholder, register, errors }: any) {
   return (
     <>
@@ -198,6 +202,75 @@ function Textarea({ register }: any) {
   return <S.Textarea minLength={1} maxLength={20} {...register} />;
 }
 
+//ShippingNameInput
+function ShippingNameInput({ register, errors }: any) {
+  return (
+    <>
+      <S.ShippingInput
+        id="receiver"
+        type="text"
+        {...register("receiver", {
+          required: "* 필수 입력사항입니다.",
+        })}
+      />
+      <ErrorText>{errors.receiver?.message}</ErrorText>
+    </>
+  );
+}
+
+function ShippingPhoneNumberInput({ register, errors }: any) {
+  return (
+    <>
+      <S.ShippingInput
+        id="receiver_phone_number"
+        type="number"
+        {...register("receiver_phone_number", {
+          required: "* -를 제외한 숫자만 입력해주세요.",
+          minLength: {
+            value: 8,
+            message: "휴대폰 번호는 10자 이상 입력 해주세요.",
+          },
+          maxLength: {
+            value: 11,
+            message: "휴대폰 번호는 11자 이하 입력 해주세요.",
+          },
+        })}
+      />
+      <ErrorText>{errors.receiver_phone_number?.message}</ErrorText>
+    </>
+  );
+}
+
+function ShippingAddressInput({ register, errors }: any) {
+  return (
+    <>
+      <S.ShippingInput
+        id="address"
+        type="text"
+        {...register("address", {
+          required: "* 필수 입력사항입니다.",
+        })}
+      />
+      <ErrorText>{errors.address?.message}</ErrorText>
+    </>
+  );
+}
+
+function ShippingAddressMessageInput({ register, errors }: any) {
+  return (
+    <>
+      <S.ShippingInput
+        id="address_message"
+        type="text"
+        {...register("address_message", {
+          required: "* 필수 입력사항입니다.",
+        })}
+      />
+      <ErrorText>{errors.address_message?.message}</ErrorText>
+    </>
+  );
+}
+
 export {
   LoginInput,
   JoinUserNameInput,
@@ -209,4 +282,8 @@ export {
   JoinStoreNameInput,
   ProductInput,
   Textarea,
+  ShippingNameInput,
+  ShippingPhoneNumberInput,
+  ShippingAddressInput,
+  ShippingAddressMessageInput,
 };

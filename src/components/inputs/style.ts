@@ -57,3 +57,17 @@ export const Textarea = styled.textarea`
   padding: 10px;
   outline: ${(props) => props.theme.sub.lighter};
 `;
+
+export const ShippingInput = styled.input`
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  outline: none;
+  border: 1px solid ${(props) => props.theme.sub.lighter};
+  border-radius: 5px;
+  margin-right: 10px;
+
+  &:focus {
+    border: 1px solid ${(props) => props.theme.main.primary};
+  }
+`;
