@@ -1,4 +1,5 @@
 import Button from "../../atoms/buttons";
+import Checkbox from "../../checkBox";
 import { PriceCommaText } from "../../text";
 import CartListItem from "../cartListItem";
 import * as S from "./style";
@@ -22,9 +23,9 @@ function CartListBox({
   return (
     <>
       <S.ProductTable>
-        <S.CheckInput
-          type="checkbox"
-          onChange={(e) => handleAllCheck(e.target.checked)}
+        <Checkbox
+          text=""
+          onChange={(e: any) => handleAllCheck(e.target.checked)}
           checked={isCheck}
         />
         <S.TableText>상품정보</S.TableText>

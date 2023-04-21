@@ -21,35 +21,6 @@ export const ProductTable = styled.ul`
   text-align: center;
 `;
 
-export const CheckInput = styled.input`
-  width: 17.6px;
-  height: 17.6px;
-  border-radius: 50%;
-  border: 2px solid ${(props) => props.theme.main.primary};
-  position: relative;
-  appearance: none;
-  cursor: pointer;
-  transition: background 0.2s;
-
-  &:before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 11.2px;
-    height: 11.2px;
-    border-radius: 50%;
-    background: transparent;
-  }
-
-  &:checked {
-    &:before {
-      background: ${(props) => props.theme.main.primary};
-    }
-  }
-`;
-
 export const CartCountText = styled.p`
   width: 100%;
   font-size: 17px;
