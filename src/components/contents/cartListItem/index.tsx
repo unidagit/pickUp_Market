@@ -1,3 +1,4 @@
+import Checkbox from "../../checkBox";
 import Count from "../../count";
 import { PriceCommaText } from "../../text";
 import * as S from "./style";
@@ -14,9 +15,9 @@ function CartListItem({
     <S.Wrapper>
       <S.CartInfoContainer>
         <div>
-          <S.CheckInput
-            type="checkbox"
-            onChange={(e) =>
+          <Checkbox
+            text=""
+            onChange={(e: any) =>
               handleSingleCheck(
                 e.target.checked,
                 cartDetailData,

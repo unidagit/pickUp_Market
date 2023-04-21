@@ -23,34 +23,6 @@ export const ProductBox = styled.div`
   display: flex;
 `;
 
-export const CheckInput = styled.input`
-  width: 1.1rem;
-  height: 1.1rem;
-  border-radius: 50%;
-  border: 2px solid ${(props) => props.theme.main.primary};
-  position: relative;
-  appearance: none;
-  cursor: pointer;
-  transition: background 0.2s;
-
-  &:before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 0.7rem;
-    height: 0.7rem;
-    border-radius: 50%;
-  }
-
-  &:checked {
-    &:before {
-      background: ${(props) => props.theme.main.primary};
-    }
-  }
-`;
-
 export const Img = styled.img`
   width: 10rem;
   height: 10rem;
