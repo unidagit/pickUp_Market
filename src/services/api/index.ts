@@ -166,3 +166,23 @@ export const apiDeleteBuyerSelectCart = async (cart_item_id: number) => {
   const { data } = await instance.delete(`/cart/${cart_item_id}/`, config);
   return data;
 };
+
+export const apiEditBuyerCartCount = async (cart_item_id: number) => {
+  const config = {
+    headers: {
+      Authorization: `JWT ${getToken}`,
+    },
+  };
+  const { data } = await instance.put(`/cart/${cart_item_id}/`, config);
+  return data;
+};
+
+export const apiCartOrderPost = async (OrderData: any) => {
+  const config = {
+    headers: {
+      Authorization: `JWT ${getToken}`,
+    },
+  };
+  const { data } = await instance.post(`/order/`, OrderData, config);
+  return data;
+};
