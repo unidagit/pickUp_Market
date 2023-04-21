@@ -2,11 +2,12 @@ import * as S from "./style";
 
 export interface LabelProps {
   htmlFor?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   width?: string;
   fontSize?: string;
   fontWeight?: string;
   marginBottom?: string;
+  marginRight?: string;
   color?: string;
 }
 
