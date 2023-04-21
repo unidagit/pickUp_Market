@@ -54,6 +54,7 @@ function CartPage() {
         setIsCheck(true);
         //수량구하기
         const cartInfoId = cartInfo.map((item: any) => item.data.quantity);
+
         //상품금액 * 수량
         const allPrice = cartDetail.reduce(
           (pre, item: any, index) => pre + item.data.price * cartInfoId[index],
@@ -121,6 +122,7 @@ function CartPage() {
         orderCheckItems: checkItems,
         cartItemTotalPrice: cartItemTotalPrice,
         cartItemFee: cartItemFee,
+        orderType: "cart_order",
       },
     });
   };
