@@ -10,7 +10,6 @@ function CartListItem({
   handleSelectDelete,
   cartInfo,
 }: any) {
-  console.log(cartInfo);
   return (
     <S.Wrapper>
       <S.CartInfoContainer>
@@ -60,20 +59,17 @@ function CartListItem({
           />
         </S.Edit>
         <S.SumPrice>
-          <PriceCommaText
-            price={
-              cartInfo
-                ? cartInfo.quantity * cartDetailData?.price +
-                  cartDetailData?.shipping_fee
-                : ""
-            }
-            fontSize="18px"
-            fontWeight="700"
-            fontColor="#EB5757"
-            unitSize="18px"
-            unitWeight="700"
-            unitColor="#EB5757"
-          />
+          {cartInfo && cartDetailData && (
+            <PriceCommaText
+              price={cartInfo.quantity * cartDetailData.price}
+              fontSize="18px"
+              fontWeight="700"
+              fontColor="#EB5757"
+              unitSize="18px"
+              unitWeight="700"
+              unitColor="#EB5757"
+            />
+          )}
         </S.SumPrice>
         <S.CloseIcon
           onClick={() =>
