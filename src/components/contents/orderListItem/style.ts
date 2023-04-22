@@ -38,7 +38,7 @@ export const ProductStock = styled.li`
   color: ${(props) => props.theme.sub.primary};
 `;
 
-export const Shipping = styled.p`
+export const Shipping = styled.div`
   font-size: 1.125rem;
   color: ${(props) => props.theme.sub.primary};
   display: flex;
