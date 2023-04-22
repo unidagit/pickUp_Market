@@ -119,18 +119,28 @@ function CartPage() {
   };
 
   const handleOrder = () => {
-    navigate(`/order`, {
-      state: {
-        orderCheckItems: checkItems,
-        cartItemPrice: cartItemPayPrice,
-        cartItemFee: cartItemFee,
-        cartQuantity: cartQuantity,
-        orderType: "cart_order",
-      },
-    });
+    if (checkItems.length === 1) {
+      navigate(`/order`, {
+        state: {
+          orderCheckItems: checkItems,
+          cartItemPrice: cartItemPayPrice,
+          cartItemFee: cartItemFee,
+          cartQuantity: cartQuantity,
+          orderType: "cart_one_order",
+        },
+      });
+    } else {
+      navigate(`/order`, {
+        state: {
+          orderCheckItems: checkItems,
+          cartItemPrice: cartItemPayPrice,
+          cartItemFee: cartItemFee,
+          cartQuantity: cartQuantity,
+          orderType: "cart_order",
+        },
+      });
+    }
   };
-
-  console.log(cartQuantity);
 
   return (
     <DefaultLayout>

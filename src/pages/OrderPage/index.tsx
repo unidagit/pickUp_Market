@@ -19,9 +19,6 @@ function OrderPage() {
   } = state;
   const [selectedOption, setSelectedOption] = useState("");
 
-  console.log(cartItemPrice);
-  console.log(orderCheckItems.product_id);
-
   const { cartOrder } = useCartOrderPostQuery();
 
   //폼제출
@@ -31,13 +28,15 @@ function OrderPage() {
       cartProductId = orderCheckItems.product_id;
       quantity = cartQuantity;
       totalPrice = cartItemPrice * cartQuantity + cartItemFee;
-    } else if (
-      orderType !== "direct_order" &&
-      orderCheckItems &&
-      cartQuantity
-    ) {
+    } else if (orderType === "cart_order" && orderCheckItems && cartQuantity) {
       cartProductId = orderCheckItems.map((item: any) => item.product_id);
       quantity = cartQuantity.map((item: any) => item.quantity);
+      totalPrice = cartItemPrice + cartItemFee;
+    } else if (orderType === "cart_one_order") {
+      cartProductId = orderCheckItems[0].product_id;
+      quantity = cartQuantity[0];
+      totalPrice = cartItemPrice + cartItemFee;
+      console.log(totalPrice);
     } else {
       console.error("Invalid order information");
       return;
@@ -51,7 +50,6 @@ function OrderPage() {
       total_price: totalPrice,
       order_kind: orderType,
     };
-
     cartOrder(OrderData);
   };
 
