@@ -12,9 +12,9 @@ function Dropdown({
   return (
     <S.Wrapper>
       <S.Triangle></S.Triangle>
+      {userType === "BUYER" && <S.MyText>주문목록 페이지</S.MyText>}
       {userType ? (
         <>
-          <S.MyText>주문목록 페이지</S.MyText>
           {handleLogout && (
             <S.MyText onClick={() => handleLogout()}>로그아웃</S.MyText>
           )}

@@ -68,7 +68,7 @@ function BuyerNavBar({ userType }: { userType: string | null }) {
   );
 }
 
-function SellerNavBar() {
+function SellerNavBar({ userType }: { userType?: string | null }) {
   const navigate = useNavigate();
   const handleSeller = () => {
     navigate(`/seller`);
@@ -92,7 +92,9 @@ function SellerNavBar() {
             <S.MyIcon src={user} alt="user 이미지" />
             <S.MyIconText>마이페이지</S.MyIconText>
             <S.DropBox>
-              {open && <Dropdown handleLogout={handleLogout} />}
+              {open && (
+                <Dropdown userType={userType} handleLogout={handleLogout} />
+              )}
             </S.DropBox>
           </S.MyIconBox>
 
