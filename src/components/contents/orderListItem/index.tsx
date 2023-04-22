@@ -1,7 +1,7 @@
 import * as S from "./style";
 import { PriceCommaText } from "../../text";
 
-function OrderListItem({ checkItem, orderItems }: any) {
+function OrderListItem({ checkItem, cartQuantity, cartItemFee }: any) {
   const { image, store_name, product_name, shipping_fee, price } = checkItem;
   return (
     <div>
@@ -11,7 +11,7 @@ function OrderListItem({ checkItem, orderItems }: any) {
           <div>
             <S.StoreName>{store_name}</S.StoreName>
             <S.ProductName>{product_name}</S.ProductName>
-            <S.ProductStock>수량 : {orderItems}개</S.ProductStock>
+            <S.ProductStock>수량 : {cartQuantity}개</S.ProductStock>
           </div>
         </S.InfoBox>
 
@@ -25,7 +25,7 @@ function OrderListItem({ checkItem, orderItems }: any) {
 
         <S.Price>
           <PriceCommaText
-            price={price * orderItems}
+            price={price * cartQuantity + cartItemFee}
             fontSize="18px"
             fontWeight="700"
             unitSize="18px"

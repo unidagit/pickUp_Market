@@ -4,12 +4,11 @@ import OrderListItem from "../orderListItem";
 import * as S from "./style";
 
 function OrderListBox({
-  orderItems,
+  cartQuantity,
   orderCheckItems,
   cartItemTotalPrice,
   cartItemFee,
 }: any) {
-  console.log(orderCheckItems);
   return (
     <>
       <S.ProductTable>
@@ -24,7 +23,7 @@ function OrderListBox({
         orderCheckItems?.map((item: IProductResult, index: number) => (
           <S.OrderListContainer key={item.product_id}>
             <OrderListItem
-              orderItems={orderItems[index].quantity} //수량있음
+              cartQuantity={cartQuantity[index]} //수량있음
               cartItemFee={cartItemFee}
               checkItem={item} //장바구니에 담은 디테일정보
             />
@@ -34,7 +33,7 @@ function OrderListBox({
       <S.TotalPrice>
         <S.PriceText>총 주문금액</S.PriceText>
         <PriceCommaText
-          price={cartItemTotalPrice}
+          price={cartItemTotalPrice + cartItemFee}
           fontSize="1.5rem"
           fontWeight="700"
           fontColor="

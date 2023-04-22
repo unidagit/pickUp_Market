@@ -11,45 +11,48 @@ import OrderOneListBox from "../../components/contents/orderOneListBox";
 function OrderPage() {
   const { state } = useLocation();
   const {
-    orderItems,
     orderCheckItems,
     cartItemTotalPrice,
     cartItemFee,
     orderType,
+    cartQuantity,
   } = state;
   const [selectedOption, setSelectedOption] = useState("");
-  const [cartProductId, setCartProductId] = useState("");
-  const [cartQuantity, setCartQuantity] = useState("");
 
+  console.log(cartItemTotalPrice);
   console.log(orderCheckItems.product_id);
 
   const { cartOrder } = useCartOrderPostQuery();
 
-  // const {
-  //   formState: { isValid, errors },
-  // } = useForm({ mode: "onChange" });
-
   //폼제출
   const handleSubmit = (data: any) => {
-    if (orderType === "direct_order") {
-      setCartProductId(orderCheckItems.product_id);
-      setCartQuantity(orderItems);
+    let cartProductId, quantity, totalPrice;
+    if (orderType === "direct_order" && orderCheckItems && cartQuantity) {
+      cartProductId = orderCheckItems.product_id;
+      quantity = cartQuantity;
+      totalPrice = cartItemTotalPrice * cartQuantity + cartItemFee;
+    } else if (
+      orderType !== "direct_order" &&
+      orderCheckItems &&
+      cartQuantity
+    ) {
+      cartProductId = orderCheckItems.map((item: any) => item.product_id);
+      quantity = cartQuantity.map((item: any) => item.quantity);
     } else {
-      setCartProductId(orderCheckItems.map((item: any) => item.product_id));
-      setCartQuantity(orderItems.results.map((item: any) => item.quantity));
+      console.error("Invalid order information");
+      return;
     }
 
     const OrderData = {
       ...data,
       product_id: cartProductId,
-      quantity: cartQuantity,
+      quantity: quantity,
       payment_method: selectedOption,
-      total_price: cartItemTotalPrice,
+      total_price: totalPrice,
       order_kind: orderType,
     };
+
     cartOrder(OrderData);
-    console.log(OrderData);
-    //   product_id , quantity,selectedOption,total_price
   };
 
   const handlePayCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,7 +68,7 @@ function OrderPage() {
 
           {orderType !== "direct_order" ? (
             <OrderListBox
-              orderItems={orderItems.results}
+              cartQuantity={cartQuantity}
               orderCheckItems={orderCheckItems}
               cartItemTotalPrice={cartItemTotalPrice}
               cartItemFee={cartItemFee}
@@ -73,7 +76,7 @@ function OrderPage() {
           ) : (
             <>
               <OrderOneListBox
-                orderItems={orderItems}
+                cartQuantity={cartQuantity}
                 orderCheckItems={orderCheckItems}
                 cartItemTotalPrice={cartItemTotalPrice}
                 cartItemFee={cartItemFee}
@@ -83,11 +86,13 @@ function OrderPage() {
         </S.ProductTableBox>
 
         <ShippingInfoBox
+          cartQuantity={cartQuantity}
           cartItemTotalPrice={cartItemTotalPrice}
           cartItemFee={cartItemFee}
           handlePayCheck={handlePayCheck}
           selectedOption={selectedOption}
           onSubmit={handleSubmit}
+          orderType={orderType}
         />
       </S.Wrapper>
     </DefaultLayout>

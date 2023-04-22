@@ -16,6 +16,8 @@ function ShippingInfoBox({
   cartItemFee,
   handlePayCheck,
   selectedOption,
+  cartQuantity,
+  orderType,
   // isValid,
   // errors,
   onSubmit,
@@ -24,6 +26,8 @@ function ShippingInfoBox({
   cartItemFee: number;
   handlePayCheck: any;
   selectedOption: any;
+  cartQuantity: any;
+  orderType: any;
   // isValid: any;
   // errors: any;
   onSubmit: any;
@@ -123,7 +127,11 @@ function ShippingInfoBox({
             <S.PriceTitle>
               <S.Text>- 상품금액</S.Text>
               <PriceCommaText
-                price={cartItemTotalPrice}
+                price={
+                  orderType === "direct_order"
+                    ? cartItemTotalPrice * cartQuantity
+                    : cartItemTotalPrice
+                }
                 fontSize="18px"
                 fontWeight="700"
                 unitColor="#767676"
@@ -147,7 +155,11 @@ function ShippingInfoBox({
             <S.PriceTitle>
               <S.Text>- 결제금액</S.Text>
               <PriceCommaText
-                price={cartItemTotalPrice}
+                price={
+                  orderType === "direct_order"
+                    ? cartItemTotalPrice * cartQuantity + cartItemFee
+                    : cartItemTotalPrice + cartItemFee
+                }
                 fontSize="24px"
                 fontWeight="700"
                 fontColor="#EB5757"

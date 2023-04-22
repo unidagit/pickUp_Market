@@ -19,12 +19,10 @@ function CartPage() {
   const { deleteSelectCart } = useCartSelectQuery();
   const [cartItemPayPrice, setCartItemPayPrice] = useState(0);
   const [cartItemFee, setCartItemFee] = useState(0);
+  const [cartQuantity, setCartQuantity] = useState<number[]>([]);
   const { cartInfo } = useCartInfoQuery({ cartList });
 
   const [isCheck, setIsCheck] = useState(false);
-
-  //결제예정 금액
-  const cartItemTotalPrice = cartItemPayPrice + cartItemFee;
 
   const handleCheckItem = useCallback(
     (checked: boolean, data: IProductResult, quantity: number) => {
@@ -32,13 +30,15 @@ function CartPage() {
         setCheckItems([...checkItems, data]);
         setCartItemPayPrice((pre) => pre + data.price * quantity);
         setCartItemFee((pre) => pre + data.shipping_fee);
+        setCartQuantity([...cartQuantity, quantity]);
       } else {
         setCheckItems(checkItems.filter((el) => el !== data));
         setCartItemPayPrice((pre) => pre - data.price * quantity);
         setCartItemFee((pre) => pre - data.shipping_fee);
+        setCartQuantity(cartQuantity.filter((el) => el !== quantity));
       }
     },
-    [checkItems]
+    [checkItems, cartQuantity]
   );
 
   // 체크박스 전체 선택
@@ -53,7 +53,9 @@ function CartPage() {
         //전체 체크버튼 활성화
         setIsCheck(true);
         //수량구하기
+        setCartQuantity([]);
         const cartInfoId = cartInfo.map((item: any) => item.data.quantity);
+        setCartQuantity(cartInfoId);
 
         //상품금액 * 수량
         const allPrice = cartDetail.reduce(
@@ -70,6 +72,7 @@ function CartPage() {
         setCheckItems(items);
       } else {
         setCheckItems([]);
+        setCartQuantity([]);
         setIsCheck(false);
         setCartItemPayPrice(0);
         setCartItemFee(0);
@@ -118,14 +121,16 @@ function CartPage() {
   const handleOrder = () => {
     navigate(`/order`, {
       state: {
-        orderItems: cartList,
         orderCheckItems: checkItems,
-        cartItemTotalPrice: cartItemTotalPrice,
+        cartItemTotalPrice: cartItemPayPrice,
         cartItemFee: cartItemFee,
+        cartQuantity: cartQuantity,
         orderType: "cart_order",
       },
     });
   };
+
+  console.log(cartQuantity);
 
   return (
     <DefaultLayout>
@@ -146,7 +151,6 @@ function CartPage() {
               checkItems={checkItems}
               cartItemPayPrice={cartItemPayPrice}
               cartItemFee={cartItemFee}
-              cartItemTotalPrice={cartItemTotalPrice}
               isCheck={isCheck}
             />
           )}

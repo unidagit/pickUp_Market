@@ -44,7 +44,7 @@ function ProductDetailPage() {
     }
     return true;
   };
-  console.log(productDetail);
+  // console.log(productDetail);
 
   //바로구매 버튼
   const handleBuy = () => {
@@ -54,16 +54,17 @@ function ProductDetailPage() {
       alert("현재 품절상태입니다.");
       return;
     }
-
-    navigate(`/order`, {
-      state: {
-        orderItems: count,
-        orderCheckItems: productDetail,
-        cartItemTotalPrice: productDetail?.price,
-        cartItemFee: productDetail?.shipping_fee,
-        orderType: "direct_order",
-      },
-    });
+    if (productDetail) {
+      navigate(`/order`, {
+        state: {
+          cartQuantity: count,
+          orderCheckItems: productDetail,
+          cartItemTotalPrice: productDetail?.price,
+          cartItemFee: productDetail?.shipping_fee,
+          orderType: "direct_order",
+        },
+      });
+    }
   };
 
   //장바구니 버튼
