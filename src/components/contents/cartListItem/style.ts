@@ -52,7 +52,7 @@ export const Shipping = styled.li`
   color: ${(props) => props.theme.sub.primary};
 `;
 
-export const SumPrice = styled.p`
+export const SumPrice = styled.div`
   /* font-size: 18px; */
   display: flex;
   justify-content: center;
@@ -60,7 +60,7 @@ export const SumPrice = styled.p`
   /* text-align: center; */
 `;
 
-export const Edit = styled.p`
+export const Edit = styled.div`
   font-size: 18px;
   text-align: center;
 `;
