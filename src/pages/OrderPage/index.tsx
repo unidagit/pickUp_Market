@@ -12,14 +12,14 @@ function OrderPage() {
   const { state } = useLocation();
   const {
     orderCheckItems,
-    cartItemTotalPrice,
+    cartItemPrice,
     cartItemFee,
     orderType,
     cartQuantity,
   } = state;
   const [selectedOption, setSelectedOption] = useState("");
 
-  console.log(cartItemTotalPrice);
+  console.log(cartItemPrice);
   console.log(orderCheckItems.product_id);
 
   const { cartOrder } = useCartOrderPostQuery();
@@ -30,7 +30,7 @@ function OrderPage() {
     if (orderType === "direct_order" && orderCheckItems && cartQuantity) {
       cartProductId = orderCheckItems.product_id;
       quantity = cartQuantity;
-      totalPrice = cartItemTotalPrice * cartQuantity + cartItemFee;
+      totalPrice = cartItemPrice * cartQuantity + cartItemFee;
     } else if (
       orderType !== "direct_order" &&
       orderCheckItems &&
@@ -70,7 +70,7 @@ function OrderPage() {
             <OrderListBox
               cartQuantity={cartQuantity}
               orderCheckItems={orderCheckItems}
-              cartItemTotalPrice={cartItemTotalPrice}
+              cartItemPrice={cartItemPrice}
               cartItemFee={cartItemFee}
             />
           ) : (
@@ -78,7 +78,7 @@ function OrderPage() {
               <OrderOneListBox
                 cartQuantity={cartQuantity}
                 orderCheckItems={orderCheckItems}
-                cartItemTotalPrice={cartItemTotalPrice}
+                cartItemPrice={cartItemPrice}
                 cartItemFee={cartItemFee}
               />
             </>
@@ -87,7 +87,7 @@ function OrderPage() {
 
         <ShippingInfoBox
           cartQuantity={cartQuantity}
-          cartItemTotalPrice={cartItemTotalPrice}
+          cartItemPrice={cartItemPrice}
           cartItemFee={cartItemFee}
           handlePayCheck={handlePayCheck}
           selectedOption={selectedOption}

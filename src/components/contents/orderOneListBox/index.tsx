@@ -5,7 +5,7 @@ import * as S from "./style";
 function OrderOneListBox({
   cartQuantity,
   orderCheckItems,
-  cartItemTotalPrice,
+  cartItemPrice,
   cartItemFee,
 }: any) {
   // console.log(orderCheckItems);
@@ -28,7 +28,7 @@ function OrderOneListBox({
       <S.TotalPrice>
         <S.PriceText>총 주문금액</S.PriceText>
         <PriceCommaText
-          price={cartItemTotalPrice * cartQuantity + cartItemFee}
+          price={cartItemPrice * cartQuantity + cartItemFee}
           fontSize="1.5rem"
           fontWeight="700"
           fontColor="

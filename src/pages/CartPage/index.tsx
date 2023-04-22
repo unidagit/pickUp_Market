@@ -122,7 +122,7 @@ function CartPage() {
     navigate(`/order`, {
       state: {
         orderCheckItems: checkItems,
-        cartItemTotalPrice: cartItemPayPrice,
+        cartItemPrice: cartItemPayPrice,
         cartItemFee: cartItemFee,
         cartQuantity: cartQuantity,
         orderType: "cart_order",

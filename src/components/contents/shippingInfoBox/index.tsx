@@ -12,7 +12,7 @@ import { PriceCommaText } from "../../text";
 import Button from "../../atoms/buttons";
 
 function ShippingInfoBox({
-  cartItemTotalPrice,
+  cartItemPrice,
   cartItemFee,
   handlePayCheck,
   selectedOption,
@@ -22,7 +22,7 @@ function ShippingInfoBox({
   // errors,
   onSubmit,
 }: {
-  cartItemTotalPrice: number;
+  cartItemPrice: number;
   cartItemFee: number;
   handlePayCheck: any;
   selectedOption: any;
@@ -129,8 +129,8 @@ function ShippingInfoBox({
               <PriceCommaText
                 price={
                   orderType === "direct_order"
-                    ? cartItemTotalPrice * cartQuantity
-                    : cartItemTotalPrice
+                    ? cartItemPrice * cartQuantity
+                    : cartItemPrice
                 }
                 fontSize="18px"
                 fontWeight="700"
@@ -157,8 +157,8 @@ function ShippingInfoBox({
               <PriceCommaText
                 price={
                   orderType === "direct_order"
-                    ? cartItemTotalPrice * cartQuantity + cartItemFee
-                    : cartItemTotalPrice + cartItemFee
+                    ? cartItemPrice * cartQuantity + cartItemFee
+                    : cartItemPrice + cartItemFee
                 }
                 fontSize="24px"
                 fontWeight="700"

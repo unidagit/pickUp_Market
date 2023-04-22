@@ -59,7 +59,7 @@ function ProductDetailPage() {
         state: {
           cartQuantity: count,
           orderCheckItems: productDetail,
-          cartItemTotalPrice: productDetail?.price,
+          cartItemPrice: productDetail?.price,
           cartItemFee: productDetail?.shipping_fee,
           orderType: "direct_order",
         },
