@@ -21,13 +21,20 @@ function NavBar() {
   );
 }
 
-function BuyerNavBar() {
+function BuyerNavBar({ userType }: { userType: string | null }) {
   const navigate = useNavigate();
   const { modalRef, open, handleMyBoxClick } = useDropdown();
 
   const handleLogin = () => {
     navigate(`/login`);
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user_type");
+    navigate(`/login`);
+  };
+
   return (
     <>
       <S.StickyWrapper>
@@ -42,10 +49,16 @@ function BuyerNavBar() {
           </S.MyIconBox>
 
           <S.MyIconBox ref={modalRef} onClick={handleMyBoxClick}>
-            <S.MyIcon src={user} alt="마이페이지" />
-            <S.MyIconText>마이페이지</S.MyIconText>
+            <S.MyIcon src={user} alt="마이 페이지" />
+            <S.MyIconText>마이 페이지</S.MyIconText>
             <S.DropBox>
-              {open && <Dropdown handleLogin={handleLogin} />}
+              {open && (
+                <Dropdown
+                  userType={userType}
+                  handleLogin={handleLogin}
+                  handleLogout={handleLogout}
+                />
+              )}
             </S.DropBox>
           </S.MyIconBox>
         </S.IconBox>

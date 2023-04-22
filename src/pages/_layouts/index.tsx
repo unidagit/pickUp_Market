@@ -7,7 +7,11 @@ function DefaultLayout({ children }: ProviderProps) {
 
   return (
     <>
-      {userType === "SELLER" ? <SellerNavBar /> : <BuyerNavBar />}
+      {userType === "SELLER" ? (
+        <SellerNavBar />
+      ) : (
+        <BuyerNavBar userType={userType} />
+      )}
 
       <S.ContentWrapper>{children}</S.ContentWrapper>
     </>
