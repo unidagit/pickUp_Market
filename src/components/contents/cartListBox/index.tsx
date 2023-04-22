@@ -17,7 +17,6 @@ function CartListBox({
   checkItems,
   cartItemPayPrice,
   cartItemFee,
-  cartItemTotalPrice,
   isCheck,
 }: any) {
   return (
@@ -37,7 +36,7 @@ function CartListBox({
         <S.CartCountText>장바구니에 담긴 상품이 없습니다.</S.CartCountText>
       ) : (
         cartDetail?.map((item: any, index: number) => (
-          <S.CartListContainer key={item?.data?.product_id}>
+          <S.CartListContainer key={index}>
             <CartListItem
               cartDetailData={item.data}
               cartInfo={cartInfo?.[index].data}
@@ -93,7 +92,7 @@ function CartListBox({
         <S.PriceBox>
           <S.PriceTitle>결제 예정 금액</S.PriceTitle>
           <PriceCommaText
-            price={cartItemTotalPrice}
+            price={cartItemPayPrice + cartItemFee}
             fontSize="1.5rem"
             fontWeight="700"
             unitSize="1rem"
