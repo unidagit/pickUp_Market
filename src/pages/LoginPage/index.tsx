@@ -5,8 +5,8 @@ import { FieldValues, useForm } from "react-hook-form";
 import { LoginInput } from "../../components/inputs";
 import { ErrorText } from "../../components/text";
 import { useLoginMutation } from "../../hooks/mutations/useLoginQuery";
-import Button from "../../components/atoms/buttons";
-import Label from "../../components/atoms/label";
+import Button from "../../components/buttons";
+import Label from "../../components/label";
 import { Link } from "react-router-dom";
 import { useSelectTab } from "../../hooks/useSelectTab";
 

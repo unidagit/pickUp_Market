@@ -1,7 +1,7 @@
 import * as S from "./style";
 import { PriceCommaText } from "../../text";
 import { IProductBox } from "../../../common/types/api";
-import Button from "../../atoms/buttons";
+import Button from "../../buttons";
 
 function ProductBox({
   image,

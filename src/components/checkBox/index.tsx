@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./style";
-import Label from "../atoms/label";
+import Label from "../label";
 
 function Checkbox({
   text,

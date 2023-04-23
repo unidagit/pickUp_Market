@@ -3,7 +3,7 @@ import * as S from "./style";
 import user from "../../assets/user.png";
 import shoppingBag from "../../assets/shoppingBag.png";
 import shoppingCart from "../../assets/shoppingCart.png";
-import Button from "../atoms/buttons";
+import Button from "../buttons";
 import Logo from "../logo";
 import Dropdown from "../dropDown";
 import { useDropdown } from "../../hooks/useDropdown";

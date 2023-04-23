@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { DefaultLayout } from "../_layouts";
 import * as S from "./style";
 import useCartListQuery from "../../hooks/queries/useCartListQuery";
-import Button from "../../components/atoms/buttons";
+import Button from "../../components/buttons";
 import useCartAllDeleteQuery from "../../hooks/mutations/useCartAllDeleteQuery";
 import useCartSelectQuery from "../../hooks/mutations/useCartSelectQuery";
 import useCartInfoQuery from "../../hooks/queries/useCartInfoQuery";

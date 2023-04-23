@@ -1,5 +1,5 @@
-import Button from "../../atoms/buttons";
-import Label from "../../atoms/label";
+import Button from "../../buttons";
+import Label from "../../label";
 import {
   JoinCompanyNumberInput,
   JoinNameInput,

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import Label from "../../atoms/label";
+import Label from "../../label";
 import {
   ShippingAddressInput,
   ShippingAddressMessageInput,
@@ -9,7 +9,7 @@ import {
 import * as S from "./style";
 import Checkbox from "../../checkBox";
 import { PriceCommaText } from "../../text";
-import Button from "../../atoms/buttons";
+import Button from "../../buttons";
 
 function ShippingInfoBox({
   cartItemPrice,

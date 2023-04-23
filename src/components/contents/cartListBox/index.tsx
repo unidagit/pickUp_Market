@@ -1,4 +1,4 @@
-import Button from "../../atoms/buttons";
+import Button from "../../buttons";
 import Checkbox from "../../checkBox";
 import { PriceCommaText } from "../../text";
 import CartListItem from "../cartListItem";

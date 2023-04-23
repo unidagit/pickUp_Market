@@ -5,7 +5,7 @@ import { DefaultLayout } from "../../_layouts";
 import Count from "../../../components/count";
 import { useState } from "react";
 import { PriceCommaText } from "../../../components/text";
-import Button from "../../../components/atoms/buttons";
+import Button from "../../../components/buttons";
 import { useNavigate } from "react-router-dom";
 import { useCartPostQuery } from "../../../hooks/mutations/useCartPostQuery";
 import useCartListQuery from "../../../hooks/queries/useCartListQuery";
