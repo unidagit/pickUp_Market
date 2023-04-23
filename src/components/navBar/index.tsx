@@ -35,13 +35,21 @@ function BuyerNavBar({ userType }: { userType: string | null }) {
     navigate(`/login`);
   };
 
+  const handleCart = () => {
+    const loginType = localStorage.getItem("user_type");
+    if (!loginType) {
+      alert("로그인을 해주세요.");
+      navigate(`/login`);
+      return;
+    }
+  };
   return (
     <>
       <S.StickyWrapper>
         <Logo />
 
         <S.IconBox>
-          <S.MyIconBox>
+          <S.MyIconBox onClick={handleCart}>
             <S.MyIcon src={shoppingCart} alt="장바구니" />
             <S.MyIconText>
               <Link to={`/cart`}>장바구니</Link>
