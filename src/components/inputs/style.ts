@@ -26,6 +26,25 @@ export const JoinInput = styled.input`
   }
 `;
 
+export const JoinInputWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const JoinNameInput = styled.input`
+  width: 100%;
+  font-size: 16px;
+  padding: 16px;
+  outline: none;
+  border: 1px solid ${(props) => props.theme.sub.lighter};
+  border-radius: 5px;
+  margin-right: 8px;
+
+  &:focus {
+    border: 1px solid ${(props) => props.theme.main.primary};
+  }
+`;
+
 export const ProductInput = styled.input`
   width: ${(props) => props.width};
   padding: 16px;

@@ -61,3 +61,28 @@ export interface IPage {
 export interface IPageParam {
   pages: IPage[];
 }
+
+export interface ICartItem {
+  data: {
+    created_at: string;
+    image: string;
+    price: number;
+    product_id: number;
+    product_info: string;
+    product_name: string;
+    seller: number;
+    shipping_fee: number;
+    shipping_method: string;
+    stock: number;
+    store_name: string;
+    updated_at: string;
+  };
+}
+
+export interface ICartItems {
+  cart_item_id: number;
+  is_active: boolean;
+  my_cart: number;
+  product_id: number;
+  quantity: number;
+}

@@ -106,8 +106,13 @@ export const apiPostValidCompanyNum = async (companyNum: string) => {
   return data;
 };
 
-export const apiPostJoin = async (joinData: IFormValue) => {
+export const apiSellerPostJoin = async (joinData: IFormValue) => {
   const { data } = await instance.post(`/accounts/signup_seller/`, joinData);
+  return data;
+};
+
+export const apiBuyerPostJoin = async (joinData: IFormValue) => {
+  const { data } = await instance.post(`/accounts/signup/`, joinData);
   return data;
 };
 

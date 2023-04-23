@@ -34,7 +34,7 @@ function LoginInput({ id, type, placeholder, register, errors }: any) {
 //1. JoinUserNameInput
 function JoinUserNameInput({ register, errors }: any) {
   return (
-    <>
+    <S.JoinInputWrap>
       <S.JoinInput
         id="username"
         type="text"
@@ -48,7 +48,7 @@ function JoinUserNameInput({ register, errors }: any) {
         })}
       />
       <ErrorText>{errors.username?.message}</ErrorText>
-    </>
+    </S.JoinInputWrap>
   );
 }
 
@@ -137,7 +137,7 @@ function JoinPhoneNumberInput({ register, errors }: any) {
 //5. JoinPhoneNumberInput
 function JoinCompanyNumberInput({ register, errors }: any) {
   return (
-    <>
+    <S.JoinInputWrap>
       <S.JoinInput
         id="company_registration_number"
         type="number"
@@ -154,7 +154,7 @@ function JoinCompanyNumberInput({ register, errors }: any) {
         })}
       />
       <ErrorText>{errors.company_registration_number?.message}</ErrorText>
-    </>
+    </S.JoinInputWrap>
   );
 }
 
@@ -166,6 +166,22 @@ function JoinStoreNameInput({ register, errors }: any) {
         id="store_name"
         type="text"
         {...register("store_name", {
+          required: "* 필수 입력사항입니다.",
+        })}
+      />
+      <ErrorText>{errors.store_name?.message}</ErrorText>
+    </>
+  );
+}
+
+//7. JoinEmailInput
+function JoinEmailInput({ register, errors }: any) {
+  return (
+    <>
+      <S.JoinInput
+        id="email"
+        type="email"
+        {...register("email", {
           required: "* 필수 입력사항입니다.",
         })}
       />
@@ -280,6 +296,7 @@ export {
   JoinPhoneNumberInput,
   JoinCompanyNumberInput,
   JoinStoreNameInput,
+  JoinEmailInput,
   ProductInput,
   Textarea,
   ShippingNameInput,

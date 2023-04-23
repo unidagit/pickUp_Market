@@ -12,19 +12,20 @@ export const Wrapper = styled.div`
 
 export const TabBox = styled.ul`
   display: flex;
+  width: 100%;
   position: absolute;
   top: -70px;
   z-index: 10;
 `;
 
 export const SelectTab = styled.li<SelectTabProps>`
-  width: 275px;
+  width: 100%;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 500;
-  font-size: 1.125rem;
+  font-size: 15.9px;
   border: 1px solid ${(props) => props.theme.sub.lighter};
   border-radius: 10px 10px 0px 0px;
   background-color: ${(props) =>
@@ -47,10 +48,11 @@ export const LoginWrapper = styled.div`
   padding: 35px;
   width: 100%;
   background-color: ${(props) => props.theme.white.primary};
-  z-index: 30;
 `;
 
-export const FormBox = styled.form``;
+export const FormBox = styled.form`
+  z-index: 0;
+`;
 
 export const InputBox = styled.div`
   display: flex;
