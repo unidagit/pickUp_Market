@@ -3,11 +3,11 @@ import * as S from "./style";
 import user from "../../assets/user.png";
 import shoppingBag from "../../assets/shoppingBag.png";
 import shoppingCart from "../../assets/shoppingCart.png";
-import Button from "../buttons";
 import Logo from "../logo";
 import Dropdown from "../dropDown";
 import { useDropdown } from "../../hooks/useDropdown";
 import { Link } from "react-router-dom";
+import Button from "../buttons";
 
 function NavBar() {
   return (
@@ -21,35 +21,24 @@ function NavBar() {
   );
 }
 
-function BuyerNavBar({ userType }: { userType: string | null }) {
-  const navigate = useNavigate();
+function BuyerNavBar({
+  userType,
+  handleLogin,
+  handleLogout,
+}: {
+  userType: string | null;
+  handleLogin: () => void;
+  handleLogout: () => void;
+}) {
   const { modalRef, open, handleMyBoxClick } = useDropdown();
 
-  const handleLogin = () => {
-    navigate(`/login`);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user_type");
-    navigate(`/login`);
-  };
-
-  const handleCart = () => {
-    const loginType = localStorage.getItem("user_type");
-    if (!loginType) {
-      alert("로그인을 해주세요.");
-      navigate(`/login`);
-      return;
-    }
-  };
   return (
     <>
       <S.StickyWrapper>
         <Logo />
 
         <S.IconBox>
-          <S.MyIconBox onClick={handleCart}>
+          <S.MyIconBox>
             <S.MyIcon src={shoppingCart} alt="장바구니" />
             <S.MyIconText>
               <Link to={`/cart`}>장바구니</Link>
