@@ -7,6 +7,8 @@ import * as S from "./style";
 import Footer from "../../components/footer";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { IProductResult } from "../../common/types/api";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function HomePage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
