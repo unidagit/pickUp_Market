@@ -32,15 +32,17 @@ function HomePage() {
           }
         >
           {!data && <Spinner />}
+
           <S.ProductListWrapper>
             {data &&
-              data.pages.map((el) =>
-                el.results.map((item: IProductResult) => (
+              data.pages &&
+              data.pages.map((el) => {
+                return el.results.map((item: IProductResult) => (
                   <S.ProductListBox key={item.product_id}>
                     <ProductCard {...item} />
                   </S.ProductListBox>
-                ))
-              )}
+                ));
+              })}
           </S.ProductListWrapper>
         </InfiniteScroll>
       </DefaultLayout>
