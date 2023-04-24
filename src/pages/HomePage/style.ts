@@ -11,6 +11,24 @@ export const ProductListWrapper = styled.div`
   padding: 80px 0px 180px;
 `;
 
+export const BannerBox = styled.div`
+  position: relative;
+  z-index: -50;
+`;
+
 export const ProductListBox = styled.div`
   margin-bottom: 78px;
+`;
+
+export const LoadingBox = styled.div`
+  width: 100%;
+  height: 100vh;
+`;
+
+export const LastProduct = styled.p`
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: ${(props) => props.theme.main.primary};
+  margin-bottom: 100px;
 `;

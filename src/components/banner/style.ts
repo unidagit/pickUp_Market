@@ -1,6 +1,13 @@
 import styled from "styled-components";
 
-export const BannerBox = styled.div`
-  background-color: ${(props) => props.theme.sub.lighter};
-  height: 30vh;
+export const SliderBox = styled.div`
+  margin-bottom: 70px;
+`;
+
+export const Img = styled.img`
+  width: 100%;
+  object-fit: cover;
+  box-sizing: border-box;
+  overflow: hidden;
+  height: 50vh;
 `;

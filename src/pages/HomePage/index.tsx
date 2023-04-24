@@ -9,13 +9,15 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { IProductResult } from "../../common/types/api";
 
 function HomePage() {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useProductListQuery();
 
   return (
     <>
       <DefaultLayout>
-        <Banner />
+        <S.BannerBox>
+          <Banner />
+        </S.BannerBox>
         <InfiniteScroll
           dataLength={data?.pages?.length || 0}
           next={fetchNextPage}
@@ -25,10 +27,11 @@ function HomePage() {
             isFetchingNextPage && hasNextPage ? (
               <Spinner />
             ) : (
-              "마지막 상품입니다."
+              <S.LastProduct>마지막 상품입니다.</S.LastProduct>
             )
           }
         >
+          {!data && <Spinner />}
           <S.ProductListWrapper>
             {data &&
               data.pages.map((el) =>
@@ -38,7 +41,6 @@ function HomePage() {
                   </S.ProductListBox>
                 ))
               )}
-            <div>{isFetching && !isFetchingNextPage ? <Spinner /> : null}</div>
           </S.ProductListWrapper>
         </InfiniteScroll>
       </DefaultLayout>
