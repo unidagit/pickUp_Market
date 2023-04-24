@@ -175,7 +175,7 @@ function ProductUploadPage() {
             fontWeight="400"
             width="220px"
             height="54px"
-            fontColor="black"
+            fontColor="#FFFFFF"
             backgroundColor="#21BF48"
           >
             저장
