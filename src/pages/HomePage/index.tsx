@@ -9,6 +9,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { IProductResult } from "../../common/types/api";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import React from "react";
 
 function HomePage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
@@ -38,13 +39,16 @@ function HomePage() {
           <S.ProductListWrapper>
             {data &&
               data.pages &&
-              data.pages.map((el) => {
-                return el.results.map((item: IProductResult) => (
-                  <S.ProductListBox key={item.product_id}>
-                    <ProductCard {...item} />
-                  </S.ProductListBox>
-                ));
-              })}
+              data.pages.map((el, i) => (
+                <React.Fragment key={i}>
+                  {el.results.map((item: IProductResult) => (
+                    <S.ProductListBox key={item.product_id}>
+                      <ProductCard {...item} />
+                    </S.ProductListBox>
+                  ))}
+                  ;
+                </React.Fragment>
+              ))}
           </S.ProductListWrapper>
         </InfiniteScroll>
       </DefaultLayout>
