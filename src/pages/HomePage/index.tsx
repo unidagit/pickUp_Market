@@ -41,7 +41,7 @@ function HomePage() {
               data.pages &&
               data.pages.map((el, i) => (
                 <React.Fragment key={i}>
-                  {el.results.map((item: IProductResult) => (
+                  {el?.results?.map((item: IProductResult) => (
                     <S.ProductListBox key={item.product_id}>
                       <ProductCard {...item} />
                     </S.ProductListBox>
