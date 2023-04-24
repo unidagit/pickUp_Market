@@ -63,7 +63,7 @@ function ProductUploadPage() {
     }
   }, [currentTab]);
 
-  const onSubmit = async (formData: FieldValues) => {
+  const onSubmit = (formData: FieldValues) => {
     if (type === "upload") {
       formData.shipping_method = shipping;
       postProduct(formData);
@@ -171,6 +171,7 @@ function ProductUploadPage() {
           </S.InputBox>
 
           <Button
+            type="submit"
             fontSize="16px"
             fontWeight="400"
             width="220px"

@@ -61,6 +61,7 @@ function ProductBox({
 
         <S.ModifyContainer>
           <Button
+            type="submit"
             fontSize="16px"
             fontWeight="400"
             height="40px"
