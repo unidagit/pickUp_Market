@@ -37,7 +37,7 @@ function HomePage() {
               data.pages.map((el) =>
                 el.results.map((item: IProductResult) => (
                   <S.ProductListBox key={item.product_id}>
-                    <ProductCard key={item.product_id} {...item} />
+                    <ProductCard {...item} />
                   </S.ProductListBox>
                 ))
               )}
