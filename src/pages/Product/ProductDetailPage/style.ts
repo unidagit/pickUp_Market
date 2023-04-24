@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   gap: 50px;
   margin: 80px auto;
   max-width: 1280px;
+  justify-content: center;
 `;
 
 export const Img = styled.img`

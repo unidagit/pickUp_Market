@@ -26,7 +26,6 @@ export const SellerTitle = styled.h2`
 
 export const Line = styled.div`
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 44px;
 `;
 
 export const IconBox = styled.div`

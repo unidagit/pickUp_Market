@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
 export const MainTitle = styled.h1`
   font-size: 36px;
   font-weight: 700;
+  margin-top: 44px;
   text-align: center;
   color: ${(props) => props.theme.sub.darker};
 `;

@@ -9,6 +9,7 @@ export const Wrapper = styled.ul`
   border-radius: 10px;
   -webkit-box-shadow: 5px 5px 15px -2px #8f8f8f;
   box-shadow: 5px 5px 15px -2px #8f8f8f;
+  z-index: 100;
 `;
 
 export const Triangle = styled.div`
@@ -30,6 +31,7 @@ export const MyText = styled.li`
   border-radius: 5px;
   color: ${(props) => props.theme.sub.primary};
   border: 1px solid ${(props) => props.theme.white.primary};
+  cursor: pointer;
 
   &:hover {
     border: 1px solid ${(props) => props.theme.sub.darker};
