@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FooterWrapper = styled.footer`
+export const FooterWrapper = styled.table`
   background-color: ${(props) => props.theme.sub.verylighter};
   height: 200px;
   display: flex;
@@ -9,7 +9,7 @@ export const FooterWrapper = styled.footer`
   align-items: flex-start;
 `;
 
-export const FooterInfo = styled.table`
+export const FooterInfo = styled.tbody`
   display: flex;
   flex-direction: column;
   font-size: 13px;
@@ -19,17 +19,17 @@ export const FooterInfo = styled.table`
   width: 1280px;
 `;
 
-export const FooterList = styled.td`
+export const FooterList = styled.tr`
   display: flex;
   column-gap: 2.4rem;
 `;
 
-export const CompanyInfo = styled.td`
+export const CompanyInfo = styled.tr`
   display: flex;
   flex-direction: column;
   margin-top: 20px;
 `;
 
-export const Text = styled.tr`
+export const Text = styled.td`
   margin-bottom: 5px;
 `;
