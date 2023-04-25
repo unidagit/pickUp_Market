@@ -1,9 +1,9 @@
-import axios from "axios";
-import { BASE_URL } from "../../constants";
-import { IFormValue } from "../../common/types";
-import { FieldValues } from "react-hook-form";
+import axios from 'axios';
+import { IFormValue } from '../../common/types';
+import { FieldValues } from 'react-hook-form';
+import { BASE_URL } from '../../constants';
 
-const getToken = localStorage.getItem("token");
+const getToken = localStorage.getItem('token');
 
 const instance = axios.create({
   baseURL: `${BASE_URL}`,
@@ -34,7 +34,7 @@ export const apiGetProductDetail = async (productId: number) => {
 };
 
 export const apiGetSellerProducts = async () => {
-  const getToken = localStorage.getItem("token");
+  const getToken = localStorage.getItem('token');
   const config = {
     headers: {
       Authorization: `JWT ${getToken}`,
@@ -47,7 +47,7 @@ export const apiGetSellerProducts = async () => {
 export const apiPostSellerProducts = async (formData: FieldValues) => {
   const config = {
     headers: {
-      "Content-Type": "multipart/form-data",
+      'Content-Type': 'multipart/form-data',
       Authorization: `JWT ${getToken}`,
     },
   };
@@ -72,7 +72,7 @@ export const apiEditSellerProduct = async (data: {
 }) => {
   const config = {
     headers: {
-      "Content-Type": "multipart/form-data",
+      'Content-Type': 'multipart/form-data',
       Authorization: `JWT ${getToken}`,
     },
   };
@@ -131,7 +131,7 @@ export const apiPostCart = async (data: {
 };
 
 export const apiGetCartList = async () => {
-  const getToken = localStorage.getItem("token");
+  const getToken = localStorage.getItem('token');
   const config = {
     headers: {
       Authorization: `JWT ${getToken}`,
@@ -142,7 +142,7 @@ export const apiGetCartList = async () => {
 };
 
 export const apiGetCartInfo = async (cart_item_id: number) => {
-  const getToken = localStorage.getItem("token");
+  const getToken = localStorage.getItem('token');
   const config = {
     headers: {
       Authorization: `JWT ${getToken}`,
