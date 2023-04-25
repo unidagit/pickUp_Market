@@ -1,15 +1,15 @@
-import Spinner from "../../components/spinner";
-import { useProductListQuery } from "../../hooks/queries/useProductListQuery";
-import { DefaultLayout } from "../_layouts";
-import Banner from "../../components/banner";
-import ProductCard from "../../components/contents/productCard";
-import * as S from "./style";
-import Footer from "../../components/footer";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { IProductResult } from "../../common/types/api";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import React from "react";
+import Spinner from '../../components/spinner';
+import { useProductListQuery } from '../../hooks/queries/useProductListQuery';
+import { DefaultLayout } from '../_layouts';
+import Banner from '../../components/banner';
+import ProductCard from '../../components/contents/productCard';
+import * as S from './style';
+import Footer from '../../components/footer';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { IProductResult } from '../../common/types/api';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import React from 'react';
 
 function HomePage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isSuccess } =
@@ -26,7 +26,7 @@ function HomePage() {
           dataLength={data?.pages?.length || 0}
           next={fetchNextPage}
           hasMore={!!hasNextPage}
-          style={{ overflow: "hidden" }}
+          style={{ overflow: 'hidden' }}
           loader={
             isFetchingNextPage && hasNextPage ? (
               <Spinner />
@@ -39,16 +39,13 @@ function HomePage() {
 
           <S.ProductListWrapper>
             {isSuccess &&
-              data?.pages?.map((el, i) => (
-                <React.Fragment key={i}>
-                  {el?.results?.map((item: IProductResult) => (
-                    <S.ProductListBox key={item.product_id}>
-                      <ProductCard {...item} />
-                    </S.ProductListBox>
-                  ))}
-                  ;
-                </React.Fragment>
-              ))}
+              data?.pages?.map((el) =>
+                el?.results?.map((item: IProductResult) => (
+                  <S.ProductListBox key={item.product_id}>
+                    <ProductCard {...item} />
+                  </S.ProductListBox>
+                ))
+              )}
           </S.ProductListWrapper>
         </InfiniteScroll>
       </DefaultLayout>
