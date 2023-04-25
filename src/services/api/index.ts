@@ -2,8 +2,6 @@ import { IFormValue } from '../../common/types';
 import { FieldValues } from 'react-hook-form';
 import { authInstance, instance } from '../../util/instance';
 
-const getToken = localStorage.getItem('token');
-
 export const apiPostLogin = async (loginData: {
   data: FieldValues;
   loginType: string;
@@ -40,6 +38,7 @@ export const apiGetSellerProducts = async () => {
 };
 
 export const apiPostSellerProducts = async (formData: FieldValues) => {
+  const getToken = localStorage.getItem('token');
   const config = {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -52,6 +51,7 @@ export const apiPostSellerProducts = async (formData: FieldValues) => {
 };
 
 export const apiDeleteSellerProduct = async (product_id: number) => {
+  const getToken = localStorage.getItem('token');
   const config = {
     headers: {
       Authorization: `JWT ${getToken}`,
@@ -68,6 +68,7 @@ export const apiEditSellerProduct = async (data: {
   formData: FieldValues;
   product_id: number;
 }) => {
+  const getToken = localStorage.getItem('token');
   const config = {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -119,6 +120,7 @@ export const apiPostCart = async (data: {
   quantity: number;
   check: boolean;
 }) => {
+  const getToken = localStorage.getItem('token');
   const config = {
     headers: {
       Authorization: `JWT ${getToken}`,
@@ -151,6 +153,7 @@ export const apiGetCartInfo = async (cart_item_id: number) => {
 };
 
 export const apiDeleteBuyerCart = async () => {
+  const getToken = localStorage.getItem('token');
   const config = {
     headers: {
       Authorization: `JWT ${getToken}`,
@@ -161,6 +164,7 @@ export const apiDeleteBuyerCart = async () => {
 };
 
 export const apiDeleteBuyerSelectCart = async (cart_item_id: number) => {
+  const getToken = localStorage.getItem('token');
   const config = {
     headers: {
       Authorization: `JWT ${getToken}`,
@@ -171,6 +175,7 @@ export const apiDeleteBuyerSelectCart = async (cart_item_id: number) => {
 };
 
 export const apiEditBuyerCartCount = async (cart_item_id: number) => {
+  const getToken = localStorage.getItem('token');
   const config = {
     headers: {
       Authorization: `JWT ${getToken}`,
@@ -181,6 +186,7 @@ export const apiEditBuyerCartCount = async (cart_item_id: number) => {
 };
 
 export const apiCartOrderPost = async (OrderData: any) => {
+  const getToken = localStorage.getItem('token');
   const config = {
     headers: {
       Authorization: `JWT ${getToken}`,
