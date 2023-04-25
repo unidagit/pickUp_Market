@@ -24,7 +24,7 @@ export const apiPostLogin = async (loginData: {
 };
 
 export const apiGetProducts = async (pageParam: any) => {
-  const { data } = await instance.get(`/products/?page=${pageParam}`);
+  const { data } = await instance.get(`/products?page=${pageParam}`);
   return data;
 };
 
