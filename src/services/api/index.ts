@@ -1,14 +1,8 @@
-import axios from 'axios';
 import { IFormValue } from '../../common/types';
 import { FieldValues } from 'react-hook-form';
-import { BASE_URL } from '../../constants';
+import { authInstance, instance } from '../../util/instance';
 
 const getToken = localStorage.getItem('token');
-
-const instance = axios.create({
-  baseURL: `${BASE_URL}`,
-  withCredentials: true,
-});
 
 export const apiPostLogin = async (loginData: {
   data: FieldValues;
@@ -41,7 +35,7 @@ export const apiGetSellerProducts = async () => {
       Authorization: `JWT ${getToken}`,
     },
   };
-  const { data } = await instance.get(`/seller/`, config);
+  const { data } = await authInstance.get(`/seller/`, config);
   return data.results;
 };
 
@@ -52,7 +46,7 @@ export const apiPostSellerProducts = async (formData: FieldValues) => {
       Authorization: `JWT ${getToken}`,
     },
   };
-  const { data } = await instance.post(`/products/`, formData, config);
+  const { data } = await authInstance.post(`/products/`, formData, config);
 
   return data;
 };
@@ -63,7 +57,10 @@ export const apiDeleteSellerProduct = async (product_id: number) => {
       Authorization: `JWT ${getToken}`,
     },
   };
-  const { data } = await instance.delete(`/products/${product_id}/`, config);
+  const { data } = await authInstance.delete(
+    `/products/${product_id}/`,
+    config
+  );
   return data;
 };
 
@@ -77,7 +74,7 @@ export const apiEditSellerProduct = async (data: {
       Authorization: `JWT ${getToken}`,
     },
   };
-  const res = await instance.patch(
+  const res = await authInstance.patch(
     `/products/${data.product_id}/`,
     data.formData,
     config
@@ -127,7 +124,7 @@ export const apiPostCart = async (data: {
       Authorization: `JWT ${getToken}`,
     },
   };
-  const res = await instance.post(`/cart/`, data, config);
+  const res = await authInstance.post(`/cart/`, data, config);
   return res.data;
 };
 
@@ -138,7 +135,7 @@ export const apiGetCartList = async () => {
       Authorization: `JWT ${getToken}`,
     },
   };
-  const { data } = await instance.get(`/cart/`, config);
+  const { data } = await authInstance.get(`/cart/`, config);
   return data;
 };
 
@@ -149,7 +146,7 @@ export const apiGetCartInfo = async (cart_item_id: number) => {
       Authorization: `JWT ${getToken}`,
     },
   };
-  const { data } = await instance.get(`/cart/${cart_item_id}/`, config);
+  const { data } = await authInstance.get(`/cart/${cart_item_id}/`, config);
   return data;
 };
 
@@ -159,7 +156,7 @@ export const apiDeleteBuyerCart = async () => {
       Authorization: `JWT ${getToken}`,
     },
   };
-  const { data } = await instance.delete(`/cart/`, config);
+  const { data } = await authInstance.delete(`/cart/`, config);
   return data;
 };
 
@@ -169,7 +166,7 @@ export const apiDeleteBuyerSelectCart = async (cart_item_id: number) => {
       Authorization: `JWT ${getToken}`,
     },
   };
-  const { data } = await instance.delete(`/cart/${cart_item_id}/`, config);
+  const { data } = await authInstance.delete(`/cart/${cart_item_id}/`, config);
   return data;
 };
 
@@ -179,7 +176,7 @@ export const apiEditBuyerCartCount = async (cart_item_id: number) => {
       Authorization: `JWT ${getToken}`,
     },
   };
-  const { data } = await instance.put(`/cart/${cart_item_id}/`, config);
+  const { data } = await authInstance.put(`/cart/${cart_item_id}/`, config);
   return data;
 };
 
@@ -189,6 +186,6 @@ export const apiCartOrderPost = async (OrderData: any) => {
       Authorization: `JWT ${getToken}`,
     },
   };
-  const { data } = await instance.post(`/order/`, OrderData, config);
+  const { data } = await authInstance.post(`/order/`, OrderData, config);
   return data;
 };
