@@ -7,6 +7,7 @@ const getToken = localStorage.getItem('token');
 
 const instance = axios.create({
   baseURL: `${BASE_URL}`,
+  withCredentials: true,
 });
 
 export const apiPostLogin = async (loginData: {
