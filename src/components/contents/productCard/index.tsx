@@ -9,6 +9,8 @@ export default function ProductCard({
   product_name,
   store_name,
   product_id,
+  shipping_fee,
+  stock,
 }: IProducts) {
   return (
     <S.Wrapper>
@@ -31,6 +33,11 @@ export default function ProductCard({
             unitSize="16px"
           />
         </S.PriceBox>
+        <S.NoticeBox>
+          {shipping_fee === 0 ? <S.FreeShipping>무료배송</S.FreeShipping> : ''}
+          {stock === 0 ? <S.SoldOut>일시품절</S.SoldOut> : ''}
+          {stock < 10 && stock > 0 ? <S.LessStock>품절임박</S.LessStock> : ''}
+        </S.NoticeBox>
       </S.Box>
     </S.Wrapper>
   );

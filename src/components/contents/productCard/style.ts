@@ -47,3 +47,41 @@ export const PriceBox = styled.div`
   align-items: center;
   gap: 2px;
 `;
+
+export const NoticeBox = styled.div`
+  display: flex;
+  margin-top: 6px;
+`;
+
+export const FreeShipping = styled.p`
+  width: 70px;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 400;
+  margin-right: 6px;
+  padding: 0.4rem;
+  border: 1.5px solid ${(props) => props.theme.sub.primary};
+  border-radius: 0.3rem;
+`;
+
+export const SoldOut = styled.p`
+  width: 70px;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: ${(props) => props.theme.white.primary};
+  background-color: ${(props) => props.theme.sub.darker};
+  border-radius: 0.3rem;
+  padding: 0.4rem;
+`;
+
+export const LessStock = styled.p`
+  width: 70px;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: ${(props) => props.theme.white.primary};
+  background-color: ${(props) => props.theme.text.lighter};
+  border-radius: 0.3rem;
+  padding: 0.4rem;
+`;
