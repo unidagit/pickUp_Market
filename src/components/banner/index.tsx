@@ -1,7 +1,7 @@
-import Slider from "react-slick";
-import * as S from "./style";
-import banner1 from "../../assets/banner1.jpg";
-import banner2 from "../../assets/banner2.jpg";
+import Slider from 'react-slick';
+import * as S from './style';
+import banner1 from '../../assets/banner1.jpg';
+import banner2 from '../../assets/banner2.jpg';
 
 const Banner = () => {
   const settings = {
