@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { SlClose } from "react-icons/sl";
+import styled from 'styled-components';
+import { SlClose } from 'react-icons/sl';
 
 export const Wrapper = styled.div`
   position: relative;
@@ -15,7 +15,7 @@ export const CartInfoContainer = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 0.1fr 5.8fr 2fr 2fr;
+  grid-template-columns: 0.1fr 5.8fr 2.9fr 2.3fr;
   align-items: center;
 `;
 
@@ -61,6 +61,11 @@ export const SumPrice = styled.div`
 `;
 
 export const Edit = styled.div`
+  font-size: 18px;
+  text-align: center;
+`;
+
+export const Quantity = styled.p`
   font-size: 18px;
   text-align: center;
 `;
