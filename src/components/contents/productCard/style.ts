@@ -18,12 +18,13 @@ export const ImgBox = styled.div`
   border-radius: 10px;
 `;
 
-export const Img = styled.img`
+export const Img = styled.div`
   object-fit: cover;
   width: 100%;
   height: 100%;
   border-radius: 10px;
   transition: 0.3s;
+  background-color: #f8f8f8;
   &:hover {
     transform: scale(1.12);
   }

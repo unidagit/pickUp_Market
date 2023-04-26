@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom';
 import { IProducts } from '../../../common/types/api';
 import { PriceCommaText } from '../../text';
 import * as S from './style';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function ProductCard({
   image,
@@ -17,7 +20,14 @@ export default function ProductCard({
       <S.Box>
         <S.ImgBox>
           <Link to={`/products/${product_id}`}>
-            <S.Img alt="상품이미지" src={image} />
+            <S.Img>
+              <LazyLoadImage
+                alt="상품이미지"
+                src={image}
+                effect="blur"
+                width="100%"
+              />
+            </S.Img>
           </Link>
         </S.ImgBox>
         <S.StoreName>{store_name}</S.StoreName>
