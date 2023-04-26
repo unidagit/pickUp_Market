@@ -1,7 +1,7 @@
-import Checkbox from "../../checkBox";
-import Count from "../../count";
-import { PriceCommaText } from "../../text";
-import * as S from "./style";
+import Checkbox from '../../checkBox';
+// import Count from '../../count';
+import { PriceCommaText } from '../../text';
+import * as S from './style';
 
 function CartListItem({
   cartDetailData,
@@ -48,16 +48,17 @@ function CartListItem({
             </S.Shipping>
           </S.InfoBox>
         </S.ProductBox>
-        <S.Edit>
-          <Count
+        {/* <S.Edit> */}
+        <S.Quantity>{cartInfo?.quantity}</S.Quantity>
+        {/* <Count
             count={cartInfo?.quantity}
-            // setCount={setCount}
-            // userType={userType}
+            setCount={setCount}
+            userType={userType}
             stock={cartDetailData?.stock}
-            // handleMinus={handleMinus}
-            // handleAdd={handleAdd}
-          />
-        </S.Edit>
+            handleMinus={handleMinus}
+            handleAdd={handleAdd}
+          /> */}
+        {/* </S.Edit> */}
         <S.SumPrice>
           {cartInfo && cartDetailData && (
             <PriceCommaText
@@ -72,14 +73,7 @@ function CartListItem({
           )}
         </S.SumPrice>
         <S.CloseIcon
-          onClick={() =>
-            handleSelectDelete(
-              cartInfo?.cart_item_id,
-              cartInfo?.quantity,
-              cartDetailData?.shipping_fee,
-              cartDetailData?.price
-            )
-          }
+          onClick={() => handleSelectDelete(cartInfo?.cart_item_id)}
         />
       </S.CartInfoContainer>
     </S.Wrapper>
