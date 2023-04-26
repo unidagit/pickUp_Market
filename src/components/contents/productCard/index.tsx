@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import { IProducts } from "../../../common/types/api";
-import { PriceCommaText } from "../../text";
-import * as S from "./style";
+import { Link } from 'react-router-dom';
+import { IProducts } from '../../../common/types/api';
+import { PriceCommaText } from '../../text';
+import * as S from './style';
 
 export default function ProductCard({
   image,
@@ -13,9 +13,11 @@ export default function ProductCard({
   return (
     <S.Wrapper>
       <S.Box>
-        <Link to={`/products/${product_id}`}>
-          <S.Img alt="상품이미지" src={image} />
-        </Link>
+        <S.ImgBox>
+          <Link to={`/products/${product_id}`}>
+            <S.Img alt="상품이미지" src={image} />
+          </Link>
+        </S.ImgBox>
         <S.StoreName>{store_name}</S.StoreName>
         <S.ProductName>{product_name}</S.ProductName>
         <S.PriceBox>
