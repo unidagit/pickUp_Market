@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router-dom";
-import { ProviderProps } from "../../common/types";
-import { BuyerNavBar, SellerNavBar } from "../../components/navBar";
-import * as S from "./style";
+import { useNavigate } from 'react-router-dom';
+import { ProviderProps } from '../../common/types';
+import { BuyerNavBar, SellerNavBar } from '../../components/navBar';
+import * as S from './style';
 
 function DefaultLayout({ children }: ProviderProps) {
-  const userType = localStorage.getItem("user_type");
+  const userType = localStorage.getItem('user_type');
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -12,20 +12,29 @@ function DefaultLayout({ children }: ProviderProps) {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user_type");
+    localStorage.removeItem('token');
+    localStorage.removeItem('user_type');
     navigate(`/login`);
+  };
+
+  const handleCartClick = () => {
+    navigate(`/cart`);
+    if (!userType) {
+      alert('로그인이 필요한 서비스입니다.');
+      navigate(`/login`);
+    }
   };
 
   return (
     <>
-      {userType === "SELLER" ? (
+      {userType === 'SELLER' ? (
         <SellerNavBar userType={userType} />
       ) : (
         <BuyerNavBar
           userType={userType}
           handleLogin={handleLogin}
           handleLogout={handleLogout}
+          handleCartClick={handleCartClick}
         />
       )}
 

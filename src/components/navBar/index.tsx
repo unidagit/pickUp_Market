@@ -1,13 +1,12 @@
-import { useNavigate } from "react-router-dom";
-import * as S from "./style";
-import user from "../../assets/user.png";
-import shoppingBag from "../../assets/shoppingBag.png";
-import shoppingCart from "../../assets/shoppingCart.png";
-import Logo from "../logo";
-import Dropdown from "../dropDown";
-import { useDropdown } from "../../hooks/useDropdown";
-import { Link } from "react-router-dom";
-import Button from "../buttons";
+import { useNavigate } from 'react-router-dom';
+import * as S from './style';
+import user from '../../assets/user.png';
+import shoppingBag from '../../assets/shoppingBag.png';
+import shoppingCart from '../../assets/shoppingCart.png';
+import Logo from '../logo';
+import Dropdown from '../dropDown';
+import { useDropdown } from '../../hooks/useDropdown';
+import Button from '../buttons';
 
 function NavBar() {
   return (
@@ -25,10 +24,12 @@ function BuyerNavBar({
   userType,
   handleLogin,
   handleLogout,
+  handleCartClick,
 }: {
   userType: string | null;
   handleLogin: () => void;
   handleLogout: () => void;
+  handleCartClick: () => void;
 }) {
   const { modalRef, open, handleMyBoxClick } = useDropdown();
 
@@ -38,11 +39,9 @@ function BuyerNavBar({
         <Logo />
 
         <S.IconBox>
-          <S.MyIconBox>
+          <S.MyIconBox onClick={handleCartClick}>
             <S.MyIcon src={shoppingCart} alt="장바구니" />
-            <S.MyIconText>
-              <Link to={`/cart`}>장바구니</Link>
-            </S.MyIconText>
+            <S.MyIconText>장바구니</S.MyIconText>
           </S.MyIconBox>
 
           <S.MyIconBox ref={modalRef} onClick={handleMyBoxClick}>
@@ -74,8 +73,8 @@ function SellerNavBar({ userType }: { userType?: string | null }) {
   const { modalRef, open, handleMyBoxClick } = useDropdown();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user_type");
+    localStorage.removeItem('token');
+    localStorage.removeItem('user_type');
     navigate(`/login`);
   };
 

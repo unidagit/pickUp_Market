@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   max-width: 1280px;
@@ -47,6 +47,12 @@ export const MyIconBox = styled.div`
   justify-content: center;
   align-items: center;
   margin-right: 30px;
+  color: ${(props) => props.theme.sub.primary};
+  cursor: pointer;
+
+  &:hover {
+    color: ${(props) => props.theme.main.primary};
+  }
 `;
 
 export const MyIcon = styled.img`
@@ -57,12 +63,6 @@ export const MyIcon = styled.img`
 
 export const MyIconText = styled.p`
   font-size: 12px;
-  color: ${(props) => props.theme.sub.primary};
-  cursor: pointer;
-
-  &:hover {
-    color: ${(props) => props.theme.main.primary};
-  }
 `;
 
 export const DropBox = styled.div`
