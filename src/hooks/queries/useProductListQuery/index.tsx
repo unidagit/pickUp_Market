@@ -1,5 +1,5 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { apiGetProducts } from "../../../services/api";
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { apiGetProducts } from '../../../services/api';
 
 export const useProductListQuery = () => {
   const {
@@ -7,9 +7,8 @@ export const useProductListQuery = () => {
     fetchNextPage, //function 다음페이지를 가져오는 함수, 페이지 맨 아래로 스크롤할 때마다 이 함수를 호출해야합니다.
     hasNextPage, //가져올 데이터가 더 있는지 여부를 나타내는 boolean
     isFetchingNextPage, //현재 다음 페이지의 데이터를 가져오는 중인지 여부를 나타내는 boolean
-    isSuccess,
   } = useInfiniteQuery(
-    ["products"],
+    ['products'],
     ({ pageParam = 1 }) => apiGetProducts(pageParam),
 
     {
@@ -27,6 +26,5 @@ export const useProductListQuery = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-    isSuccess,
   };
 };

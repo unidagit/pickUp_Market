@@ -12,7 +12,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import React from 'react';
 
 function HomePage() {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isSuccess } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useProductListQuery();
 
   console.log(data);
@@ -38,7 +38,7 @@ function HomePage() {
           {!data && <Spinner />}
 
           <S.ProductListWrapper>
-            {isSuccess &&
+            {data &&
               data?.pages?.map((el) =>
                 el?.results?.map((item: IProductResult) => (
                   <S.ProductListBox key={item.product_id}>
