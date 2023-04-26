@@ -3,7 +3,6 @@ import { IProducts } from '../../../common/types/api';
 import { PriceCommaText } from '../../text';
 import * as S from './style';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function ProductCard({
@@ -26,6 +25,8 @@ export default function ProductCard({
                 src={image}
                 effect="blur"
                 width="100%"
+                height="100%"
+                style={{ objectFit: 'cover' }}
               />
             </S.Img>
           </Link>
