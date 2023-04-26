@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { DefaultLayout } from "../_layouts";
-import * as S from "./style";
-import useCartListQuery from "../../hooks/queries/useCartListQuery";
-import Button from "../../components/buttons";
-import useCartAllDeleteQuery from "../../hooks/mutations/useCartAllDeleteQuery";
-import useCartSelectQuery from "../../hooks/mutations/useCartSelectQuery";
-import useCartInfoQuery from "../../hooks/queries/useCartInfoQuery";
-import { useNavigate } from "react-router-dom";
-import CartListBox from "../../components/contents/cartListBox";
-import Spinner from "../../components/spinner";
-import { IProductResult } from "../../common/types/api";
+import React, { useState, useEffect, useCallback } from 'react';
+import { DefaultLayout } from '../_layouts';
+import * as S from './style';
+import useCartListQuery from '../../hooks/queries/useCartListQuery';
+import Button from '../../components/buttons';
+import useCartAllDeleteQuery from '../../hooks/mutations/useCartAllDeleteQuery';
+import useCartSelectQuery from '../../hooks/mutations/useCartSelectQuery';
+import useCartInfoQuery from '../../hooks/queries/useCartInfoQuery';
+import { useNavigate } from 'react-router-dom';
+import CartListBox from '../../components/contents/cartListBox';
+import Spinner from '../../components/spinner';
+import { IProductResult } from '../../common/types/api';
 
 function CartPage() {
   const navigate = useNavigate();
@@ -107,15 +107,8 @@ function CartPage() {
   };
 
   //상품개별 삭제
-  const handleSelectDelete = (
-    itemId: number,
-    price: number,
-    shippingFee: number,
-    quantity: number
-  ) => {
+  const handleSelectDelete = (itemId: number) => {
     deleteSelectCart(itemId);
-    setCartItemPayPrice(cartItemPayPrice - price * quantity);
-    setCartItemFee(cartItemFee - shippingFee);
   };
 
   const handleOrder = () => {
@@ -126,7 +119,7 @@ function CartPage() {
           cartItemPrice: cartItemPayPrice,
           cartItemFee: cartItemFee,
           cartQuantity: cartQuantity,
-          orderType: "cart_one_order",
+          orderType: 'cart_one_order',
         },
       });
     } else {
@@ -136,7 +129,7 @@ function CartPage() {
           cartItemPrice: cartItemPayPrice,
           cartItemFee: cartItemFee,
           cartQuantity: cartQuantity,
-          orderType: "cart_order",
+          orderType: 'cart_order',
         },
       });
     }
