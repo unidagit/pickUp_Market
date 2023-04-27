@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const JoinWrapper = styled.div`
   display: flex;
   flex-direction: column;
   border: 1px solid ${(props) => props.theme.sub.lighter};
-  border-radius: 0.5rem;
+  border-radius: 0px 0px 0.5rem 0.5rem;
   padding: 35px;
   width: 100%;
 `;
