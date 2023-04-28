@@ -1,20 +1,20 @@
-import * as S from "./style";
-import { useProductDetailQuery } from "../../../hooks/queries/useProductDetailQuery";
-import Spinner from "../../../components/spinner";
-import { DefaultLayout } from "../../_layouts";
-import Count from "../../../components/count";
-import { useState } from "react";
-import { PriceCommaText } from "../../../components/text";
-import Button from "../../../components/buttons";
-import { useNavigate } from "react-router-dom";
-import { useCartPostQuery } from "../../../hooks/mutations/useCartPostQuery";
-import useCartListQuery from "../../../hooks/queries/useCartListQuery";
+import * as S from './style';
+import { useProductDetailQuery } from '../../../hooks/queries/useProductDetailQuery';
+import Spinner from '../../../components/spinner';
+import { DefaultLayout } from '../../_layouts';
+import Count from '../../../components/count';
+import { useState } from 'react';
+import { PriceCommaText } from '../../../components/text';
+import Button from '../../../components/buttons';
+import { useNavigate } from 'react-router-dom';
+import { useCartPostQuery } from '../../../hooks/mutations/useCartPostQuery';
+import useCartListQuery from '../../../hooks/queries/useCartListQuery';
 
 function ProductDetailPage() {
   const navigate = useNavigate();
   const [count, setCount] = useState(1);
   const { productDetail, isLoading } = useProductDetailQuery();
-  const userType = localStorage.getItem("user_type");
+  const userType = localStorage.getItem('user_type');
   const { postCartList } = useCartPostQuery();
 
   //cartList
@@ -24,11 +24,11 @@ function ProductDetailPage() {
 
   //구매자인지 체크
   const userCheck = () => {
-    if (userType === "SELLER") {
-      alert("판매자는 구매할 수 없습니다.");
+    if (userType === 'SELLER') {
+      alert('판매자는 구매할 수 없습니다.');
       return true;
     } else if (!userType) {
-      navigate("/login");
+      navigate('/login');
       return true;
     }
     return false;
@@ -51,7 +51,7 @@ function ProductDetailPage() {
     const userTypeCheck = userCheck();
     if (userTypeCheck === true) return;
     if (productDetail?.stock === 0) {
-      alert("현재 품절상태입니다.");
+      alert('현재 품절상태입니다.');
       return;
     }
     if (productDetail) {
@@ -61,7 +61,7 @@ function ProductDetailPage() {
           orderCheckItems: productDetail,
           cartItemPrice: productDetail?.price,
           cartItemFee: productDetail?.shipping_fee,
-          orderType: "direct_order",
+          orderType: 'direct_order',
         },
       });
     }
@@ -71,14 +71,14 @@ function ProductDetailPage() {
   const handleCart = () => {
     const userTypeCheck = userCheck();
 
-    if (userTypeCheck) {
+    if (userTypeCheck === true) {
       return;
     } else {
       const cartListCheck = cartCheck();
 
       //장바구니 중복 체크
       if (cartListCheck === false) {
-        alert("장바구니에 있는 상품입니다.");
+        alert('장바구니에 있는 상품입니다.');
       } else if (cartListCheck === true) {
         //장바구니 api 호출
         postCartList({
@@ -92,8 +92,8 @@ function ProductDetailPage() {
 
   //count
   const handleMinus = () => {
-    if (userType === "SELLER") {
-      alert("판매자는 구매할 수 없습니다.");
+    if (userType === 'SELLER') {
+      alert('판매자는 구매할 수 없습니다.');
       return;
     }
 
@@ -105,8 +105,8 @@ function ProductDetailPage() {
 
   const handleAdd = (stock: number) => {
     //seller 금지
-    if (userType === "SELLER") {
-      alert("판매자는 구매할 수 없습니다.");
+    if (userType === 'SELLER') {
+      alert('판매자는 구매할 수 없습니다.');
       return;
     }
 
@@ -114,7 +114,7 @@ function ProductDetailPage() {
       setCount(count + 1);
       return;
     } else if (stock === 0) {
-      alert("현재 품절입니다");
+      alert('현재 품절입니다');
     }
   };
 

@@ -1,5 +1,5 @@
-import Button from "../../buttons";
-import Label from "../../label";
+import Button from '../../buttons';
+import Label from '../../label';
 import {
   JoinEmailInput,
   JoinNameInput,
@@ -7,9 +7,9 @@ import {
   JoinUserNameInput,
   JoinUserPasswordConfirmInput,
   JoinUserPasswordInput,
-} from "../../inputs";
-import { ErrorText, SuccessText } from "../../text";
-import * as S from "./style";
+} from '../../inputs';
+import { ErrorText, SuccessText } from '../../text';
+import * as S from './style';
 
 function BuyerJoinForm(props: any) {
   const {

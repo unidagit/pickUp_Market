@@ -1,14 +1,14 @@
-import { CenterLayout } from "../_layouts";
-import * as S from "./style";
-import { useForm } from "react-hook-form";
-import { IFormValue } from "../../common/types";
-import useValidCompanyNumQuery from "../../hooks/mutations/useVaildCompanyNumQuery";
-import { useSelectTab } from "../../hooks/useSelectTab";
-import SellerJoinForm from "../../components/contents/sellerJoinForm";
-import BuyerJoinForm from "../../components/contents/buyerJoinForm";
-import { useJoinSellerQuery } from "../../hooks/mutations/useJoinSellerQuery";
-import useValidUsernameQuery from "../../hooks/mutations/useValidUsernameQuery";
-import { useJoinBuyerQuery } from "../../hooks/mutations/useJoinBuyerQuery";
+import * as S from './style';
+import { useForm } from 'react-hook-form';
+import { IFormValue } from '../../common/types';
+import useValidCompanyNumQuery from '../../hooks/mutations/useVaildCompanyNumQuery';
+import { useSelectTab } from '../../hooks/useSelectTab';
+import SellerJoinForm from '../../components/contents/sellerJoinForm';
+import BuyerJoinForm from '../../components/contents/buyerJoinForm';
+import { useJoinSellerQuery } from '../../hooks/mutations/useJoinSellerQuery';
+import useValidUsernameQuery from '../../hooks/mutations/useValidUsernameQuery';
+import { useJoinBuyerQuery } from '../../hooks/mutations/useJoinBuyerQuery';
+import { CenterLayout } from '../_layouts';
 
 function JoinPage() {
   const { loginType, handleSellerButton, handleBuyerButton } = useSelectTab();
@@ -18,7 +18,7 @@ function JoinPage() {
     handleSubmit,
     getValues,
     formState: { isValid, errors },
-  } = useForm<IFormValue>({ mode: "onChange" });
+  } = useForm<IFormValue>({ mode: 'onChange' });
 
   //SELLER 유저네임 중복 체크
   const { vaildUsername, errorMessage, successMessage, isValidUsername } =
@@ -38,9 +38,9 @@ function JoinPage() {
   //SELLER 폼제출
   const sellerOnSubmit = async (joinData: IFormValue) => {
     if (!isValidUsername) {
-      alert("아이디 중복체크 해주세요.");
+      alert('아이디 중복체크 해주세요.');
     } else if (!isValidCompanyNum) {
-      alert("사업자등록번호 인증 해주세요.");
+      alert('사업자등록번호 인증 해주세요.');
       return;
     }
     postSellerJoin(joinData);
@@ -48,7 +48,7 @@ function JoinPage() {
 
   //SELLER 아이디 중복검사
   const handleUsernameCheck = () => {
-    const username = getValues("username");
+    const username = getValues('username');
     if (username) {
       vaildUsername(username);
     }
@@ -56,7 +56,7 @@ function JoinPage() {
 
   //SELLER 사업자등록번호 인증 검사
   const handleCompanyNumCheck = () => {
-    const companyNum = getValues("company_registration_number");
+    const companyNum = getValues('company_registration_number');
     if (companyNum) {
       validCompanyNum(companyNum);
     }
@@ -68,7 +68,7 @@ function JoinPage() {
   //BUYER 폼제출
   const buyerOnSubmit = async (joinData: IFormValue) => {
     if (!isValidUsername) {
-      alert("아이디 중복체크 해주세요.");
+      alert('아이디 중복체크 해주세요.');
       return;
     }
     postBuyerJoin(joinData);
@@ -119,7 +119,7 @@ function JoinPage() {
           </S.SelectTab>
         </S.TabBox>
 
-        {loginType === "BUYER" ? (
+        {loginType === 'BUYER' ? (
           <BuyerJoinForm {...buyerJoinFormProps} />
         ) : (
           <SellerJoinForm {...sellerJoinFormProps} />

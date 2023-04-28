@@ -1,10 +1,10 @@
-import Button from "../../buttons";
-import Checkbox from "../../checkBox";
-import { PriceCommaText } from "../../text";
-import CartListItem from "../cartListItem";
-import * as S from "./style";
-import { IoAddCircleOutline } from "react-icons/io5";
-import { TiEquals } from "react-icons/ti";
+import Button from '../../buttons';
+import Checkbox from '../../checkBox';
+import { PriceCommaText } from '../../text';
+import CartListItem from '../cartListItem';
+import * as S from './style';
+import { IoAddCircleOutline } from 'react-icons/io5';
+import { TiEquals } from 'react-icons/ti';
 
 function CartListBox({
   handleAllDelete,

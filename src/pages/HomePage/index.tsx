@@ -9,7 +9,6 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { IProductResult } from '../../common/types/api';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import React from 'react';
 
 function HomePage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
@@ -22,6 +21,7 @@ function HomePage() {
         <S.BannerBox>
           <Banner />
         </S.BannerBox>
+
         <InfiniteScroll
           dataLength={data?.pages?.length || 0}
           next={fetchNextPage}
