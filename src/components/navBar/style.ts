@@ -47,7 +47,7 @@ export const MyIconBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: 20px;
+  margin-right: 20px;
   color: ${(props) => props.theme.sub.primary};
   cursor: pointer;
 
