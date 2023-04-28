@@ -86,3 +86,23 @@ export interface ICartItems {
   product_id: number;
   quantity: number;
 }
+
+export interface OrderSuccess {
+  count: number;
+  next: string;
+  previous: null;
+  results: OrderSuccessList[];
+}
+
+export interface OrderSuccessList {
+  address: string;
+  address_message: string;
+  buyer: number;
+  created_at: string;
+  delivery_status: string;
+  order_number: number;
+  payment_method: string;
+  receiver: string;
+  receiver_phone_number: string;
+  total_price: number;
+}

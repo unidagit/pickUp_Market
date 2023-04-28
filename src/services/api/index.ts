@@ -195,3 +195,14 @@ export const apiCartOrderPost = async (OrderData: any) => {
   const { data } = await authInstance.post(`/order/`, OrderData, config);
   return data;
 };
+
+export const apiGetOrderSuccessList = async () => {
+  const getToken = localStorage.getItem('token');
+  const config = {
+    headers: {
+      Authorization: `JWT ${getToken}`,
+    },
+  };
+  const { data } = await authInstance.get(`/order/`, config);
+  return data;
+};

@@ -9,6 +9,7 @@ import CartPage from '../pages/CartPage';
 import OrderPage from '../pages/OrderPage';
 import { PrivateRoute } from './privateRoute';
 import ErrorPage from '../pages/ErrorPage';
+import OrderListPage from '../pages/OrderListPage';
 
 export default function IRoute() {
   return (
@@ -47,6 +48,14 @@ export default function IRoute() {
           element={
             <PrivateRoute>
               <OrderPage />
+            </PrivateRoute>
+          }
+        ></Route>
+        <Route
+          path="/orderList/"
+          element={
+            <PrivateRoute>
+              <OrderListPage />
             </PrivateRoute>
           }
         ></Route>
