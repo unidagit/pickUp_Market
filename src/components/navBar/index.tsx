@@ -25,11 +25,13 @@ function BuyerNavBar({
   handleLogin,
   handleLogout,
   handleCartClick,
+  handleOrderPage,
 }: {
   userType: string | null;
   handleLogin: () => void;
   handleLogout: () => void;
   handleCartClick: () => void;
+  handleOrderPage: () => void;
 }) {
   const { modalRef, open, handleMyBoxClick } = useDropdown();
 
@@ -37,7 +39,6 @@ function BuyerNavBar({
     <>
       <S.StickyWrapper>
         <Logo />
-
         <S.IconBox>
           <S.MyIconBox onClick={handleCartClick}>
             <S.MyIcon src={shoppingCart} alt="장바구니" />
@@ -53,6 +54,7 @@ function BuyerNavBar({
                   userType={userType}
                   handleLogin={handleLogin}
                   handleLogout={handleLogout}
+                  handleOrderPage={handleOrderPage}
                 />
               )}
             </S.DropBox>

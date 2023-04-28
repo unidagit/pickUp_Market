@@ -33,7 +33,6 @@ export const Line = styled.div`
 export const IconBox = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 20px;
 `;
 
 export const ShopBagIcon = styled.img`
@@ -48,7 +47,7 @@ export const MyIconBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: 20px;
+  margin-left: 20px;
   color: ${(props) => props.theme.sub.primary};
   cursor: pointer;
 

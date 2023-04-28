@@ -25,6 +25,10 @@ function DefaultLayout({ children }: ProviderProps) {
     }
   };
 
+  const handleOrderPage = () => {
+    navigate(`/orderList`);
+  };
+
   return (
     <>
       {userType === 'SELLER' ? (
@@ -35,6 +39,7 @@ function DefaultLayout({ children }: ProviderProps) {
           handleLogin={handleLogin}
           handleLogout={handleLogout}
           handleCartClick={handleCartClick}
+          handleOrderPage={handleOrderPage}
         />
       )}
 
