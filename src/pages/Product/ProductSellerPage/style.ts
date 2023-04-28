@@ -1,15 +1,21 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  max-width: 1280px;
-  margin: 0 auto;
   margin-top: 44px;
+  display: flex;
+  justify-content: center;
 `;
 
 export const MainTitle = styled.h1`
   font-size: 36px;
   font-weight: 700;
   color: ${(props) => props.theme.sub.primary};
+`;
+
+export const Container = styled.div`
+  max-width: 1280px;
+  width: 100%;
+  padding: 0 1rem;
 `;
 
 export const UploadBox = styled.div`

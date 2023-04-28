@@ -1,8 +1,16 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CartBox = styled.div`
+  margin: 0 1rem;
   max-width: 1280px;
-  margin: 0 auto;
+  width: 100%;
 `;
 
 export const MainTitle = styled.h1`
