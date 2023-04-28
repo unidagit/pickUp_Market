@@ -1,18 +1,22 @@
-import * as S from "./style";
+import * as S from './style';
 
 function Dropdown({
   handleLogout,
   handleLogin,
   userType,
+  handleOrderPage,
 }: {
   handleLogout?: () => void;
   handleLogin?: () => void;
   userType?: string | null;
+  handleOrderPage?: any;
 }) {
   return (
     <S.Wrapper>
       <S.Triangle></S.Triangle>
-      {userType === "BUYER" && <S.MyText>주문목록 페이지</S.MyText>}
+      {userType === 'BUYER' && (
+        <S.MyText onClick={() => handleOrderPage()}>주문목록 페이지</S.MyText>
+      )}
       {userType ? (
         <>
           {handleLogout && (
