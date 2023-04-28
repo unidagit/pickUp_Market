@@ -138,31 +138,33 @@ function CartPage() {
   return (
     <DefaultLayout>
       <S.Wrapper>
-        <S.MainTitle>장바구니</S.MainTitle>
-        <S.ProductTableBox>
-          {isLoading ? (
-            <Spinner />
-          ) : (
-            <CartListBox
-              handleAllDelete={handleAllDelete}
-              handleSelectDelete={handleSelectDelete}
-              handleSingleCheck={handleSingleCheck}
-              handleAllCheck={handleAllCheck}
-              cartList={cartList}
-              cartDetail={cartDetail}
-              cartInfo={cartInfo}
-              checkItems={checkItems}
-              cartItemPayPrice={cartItemPayPrice}
-              cartItemFee={cartItemFee}
-              isCheck={isCheck}
-            />
-          )}
-          <S.BtnBox>
-            <Button width="220px" onClick={handleOrder}>
-              주문하기
-            </Button>
-          </S.BtnBox>
-        </S.ProductTableBox>
+        <S.CartBox>
+          <S.MainTitle>장바구니</S.MainTitle>
+          <S.ProductTableBox>
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <CartListBox
+                handleAllDelete={handleAllDelete}
+                handleSelectDelete={handleSelectDelete}
+                handleSingleCheck={handleSingleCheck}
+                handleAllCheck={handleAllCheck}
+                cartList={cartList}
+                cartDetail={cartDetail}
+                cartInfo={cartInfo}
+                checkItems={checkItems}
+                cartItemPayPrice={cartItemPayPrice}
+                cartItemFee={cartItemFee}
+                isCheck={isCheck}
+              />
+            )}
+            <S.BtnBox>
+              <Button width="220px" onClick={handleOrder}>
+                주문하기
+              </Button>
+            </S.BtnBox>
+          </S.ProductTableBox>
+        </S.CartBox>
       </S.Wrapper>
     </DefaultLayout>
   );
