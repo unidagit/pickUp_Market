@@ -5,10 +5,9 @@ export const SliderBox = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 100%;
   object-fit: cover;
   box-sizing: border-box;
   overflow: hidden;
-  min-height: 15rem;
+  min-height: 10rem;
   max-height: 25rem;
 `;

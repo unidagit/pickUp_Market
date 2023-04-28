@@ -1,8 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ContentWrapper = styled.main`
   /* background-color: lightblue; */
   min-height: calc(100vh - 90px);
+  margin: 0 auto;
 `;
 
 export const CenterWrapper = styled.main`

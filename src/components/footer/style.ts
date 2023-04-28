@@ -1,27 +1,24 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const FooterWrapper = styled.table`
   background-color: ${(props) => props.theme.sub.verylighter};
-  height: 200px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 `;
 
 export const FooterInfo = styled.tbody`
-  display: flex;
-  flex-direction: column;
   font-size: 13px;
-  max-width: 1280px;
-  margin: 0 auto;
-  color: ${(props) => props.theme.sub.primary};
   width: 1280px;
+  margin: 2rem 1rem;
+  color: ${(props) => props.theme.sub.primary};
 `;
 
 export const FooterList = styled.tr`
   display: flex;
-  column-gap: 2.4rem;
+  flex-wrap: wrap;
+  gap: 20px;
 `;
 
 export const CompanyInfo = styled.tr`

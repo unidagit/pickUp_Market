@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   max-width: 1280px;
   margin: 0 auto;
+  padding: 0 1rem;
   height: 90px;
   display: flex;
   align-items: center;
@@ -11,6 +12,7 @@ export const Wrapper = styled.div`
 export const StickyWrapper = styled.nav`
   max-width: 1280px;
   margin: 0 auto;
+  padding: 0 1rem;
   height: 90px;
   display: flex;
   align-items: center;
@@ -46,7 +48,7 @@ export const MyIconBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: 30px;
+  margin-left: 20px;
   color: ${(props) => props.theme.sub.primary};
   cursor: pointer;
 

@@ -15,41 +15,39 @@ export default function ProductCard({
   stock,
 }: IProducts) {
   return (
-    <S.Wrapper>
-      <S.Box>
-        <S.ImgBox>
-          <Link to={`/products/${product_id}`}>
-            <S.Img>
-              <LazyLoadImage
-                alt="상품이미지"
-                src={image}
-                effect="blur"
-                width="100%"
-                height="100%"
-                style={{ objectFit: 'cover' }}
-              />
-            </S.Img>
-          </Link>
-        </S.ImgBox>
-        <S.StoreName>{store_name}</S.StoreName>
-        <S.ProductName>{product_name}</S.ProductName>
-        <S.PriceBox>
-          <PriceCommaText
-            fontSize="24px"
-            fontWeight="700"
-            fontColor="black"
-            price={price}
-            unitColor="
+    <S.Box>
+      <S.ImgBox>
+        <Link to={`/products/${product_id}`}>
+          <S.Img>
+            <LazyLoadImage
+              alt="상품이미지"
+              src={image}
+              effect="blur"
+              width="100%"
+              height="100%"
+              style={{ objectFit: 'cover' }}
+            />
+          </S.Img>
+        </Link>
+      </S.ImgBox>
+      <S.StoreName>{store_name}</S.StoreName>
+      <S.ProductName>{product_name}</S.ProductName>
+      <S.PriceBox>
+        <PriceCommaText
+          fontSize="24px"
+          fontWeight="700"
+          fontColor="black"
+          price={price}
+          unitColor="
           #000000"
-            unitSize="16px"
-          />
-        </S.PriceBox>
-        <S.NoticeBox>
-          {shipping_fee === 0 ? <S.FreeShipping>무료배송</S.FreeShipping> : ''}
-          {stock === 0 ? <S.SoldOut>일시품절</S.SoldOut> : ''}
-          {stock < 10 && stock > 0 ? <S.LessStock>품절임박</S.LessStock> : ''}
-        </S.NoticeBox>
-      </S.Box>
-    </S.Wrapper>
+          unitSize="16px"
+        />
+      </S.PriceBox>
+      <S.NoticeBox>
+        {shipping_fee === 0 ? <S.FreeShipping>무료배송</S.FreeShipping> : ''}
+        {stock === 0 ? <S.SoldOut>일시품절</S.SoldOut> : ''}
+        {stock < 10 && stock > 0 ? <S.LessStock>품절임박</S.LessStock> : ''}
+      </S.NoticeBox>
+    </S.Box>
   );
 }
